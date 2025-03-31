@@ -8,23 +8,24 @@
 
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
     <nav>
         <a href="#" class="logo">
-            <box-icon name='game' type='solid' color='#00FFFF'></box-icon>Game<span>/></span>
+            <box-icon name='game' type='solid' color='#00FFFF'></box-icon>Home<span>/></span>
         </a>
         <div class="menuToggle" onclick="toggleMenu()">
         </div>
         <ul class="navigation">
 
-            <li><a href="#banner" onclick="toggleMenu()">Start</a></li>
-            <!-- <li><a href="#about" onclick="toggleMenu()">About</a></li>-->
-            <li><a href="#sobre-mi">About me</a></li>
+            <!-- <li><a href="#banner" onclick="toggleMenu()">Start</a></li>
+            <li><a href="#about" onclick="toggleMenu()">About</a></li>-->
+            <li><a href="#about">About me</a></li>
             <li><a href="#curriculum">Currículum</a></li>
-            <li><a href="#sobre-mi2" onclick="toggleMenu()">Sobre mi 2</a></li>
-            <li><a href="#games" onclick="toggleMenu()">Game</a></li>
-            <li><a href="#merchandise" onclick="toggleMenu()">Merchandise</a></li>
+            <!--<li><a href="#sobre-mi2" onclick="toggleMenu()">Sobre mi 2</a></li> -->
+            <li><a href="#games" onclick="toggleMenu()">Featured Projects</a></li>
+            <!--<li><a href="#merchandise" onclick="toggleMenu()">Merchandise</a></li>-->
             <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
 
 
@@ -35,10 +36,11 @@
             <h1 class="title-title-text">
                 Lucila Vázquez Soriano
             </h1>
-            <p>Welcome to my page!</p>
-            <div id="section10" class="demo">
+            <br>
+            <p>Future Techical artist. Hello and welcome to my page!</p>
+            <!--<div id="section10" class="demo">
                 <a href="#about"><span></span></a>
-            </div>
+            </div>-->
         </div>
     </section>
     <!-- about  -->
@@ -61,13 +63,23 @@
                     <br>
                     When I’m not developing, I enjoy exploring new game mechanics, researching VR applications, and refining my 3D design skills. I’m always excited to take on new challenges and contribute to cutting-edge projects.
                 </p>
-
+                <br>
+                <br>
+                <br>
+                <h2 class="title-text">
+                    <lord-icon src="https://cdn.lordicon.com/nocovwne.json"
+                               trigger="loop"
+                               colors="primary:#00ffff,secondary:#ffffff"
+                               stroke="66"
+                               style="width: 50px;height: 50px;margin-top: -10px;">
+                    </lord-icon>Sobre <span>Mí</span>
+                </h2>
                 <p>
                     Graduada en Ingeniera Multimedia con una sólida experiencia en desarrollo de videojuegos y realidad virtual. Me encanta crear experiencias inmersivas e interactivas que amplían los límites de la tecnología. Mi trabajo combina creatividad y conocimientos técnicos, con un enfoque en la optimización del rendimiento y el diseño de mecánicas de juego atractivas.
                     <br>
                     Me desenvuelvo bien en entornos colaborativos, utilizando metodologías ágiles para dar vida a proyectos innovadores. Mi curiosidad me impulsa a aprender y adaptarme constantemente a nuevas tecnologías, siempre buscando mejorar y crear experiencias impactantes.
                     <br>
-                    Cuando no estoy desarrollando, disfruto explorando nuevas mecánicas de juego, investigando aplicaciones de realidad virtual y perfeccionando mis habilidades en diseño 3D. Siempre estoy entusiasmado por asumir nuevos desafíos y contribuir a proyectos de vanguardia.
+                    Cuando no estoy desarrollando, disfruto explorando nuevas mecánicas de juego, investigando aplicaciones de realidad virtual y perfeccionando mis habilidades en diseño 3D. Siempre estoy entusiasmada por asumir nuevos desafíos y contribuir a proyectos de vanguardia.
                 </p>
 
             </div>
@@ -95,33 +107,33 @@
         <h1 class="title-text">
             Lucila Vázquez Soriano
         </h1>
-        <p>Aquí puedes ver mi experiencia y habilidades en desarrollo.</p>
-        <a href="tu-cv.pdf" download="media/docs/Resume_Lucila_Vazquez_Soriano" class="boton-descarga">Download Resume</a>
-        <a href="tu-cv.pdf" download="media/docs/CV_Lucila_Vazquez_Soriano" class="boton-descarga">Descargar curriculum</a>
+        <p>If you want, you can dowload mi resume.</p>
+        <a href="media/docs/Resume_Lucila_Vazquez_Soriano.pdf" download="Resume_Lucila_Vazquez_Soriano" class="boton-descarga"><i class="fa-solid fa-download"></i> Download Resume as PDF</a>
+        <a href="media/docs/CV_Lucila_Vazquez_Soriano.pdf" download="CV_Lucila_Vazquez_Soriano" class="boton-descarga"><i class="fa-solid fa-download"></i> Descargar curriculum como PDF</a>
 
     </section>
     <!-- ------ -->
     <!-- ganes -->
     <section id="games" class="game">
         <div class="title">
-            <lord-icon src="https://cdn.lordicon.com/ibgjiwvi.json"
-                       trigger="loop"
-                       colors="primary:#00ffff,secondary:#ffffff"
-                       style="width: 50px;height: 50px;">
-            </lord-icon>
-            <h2 class="title-text"><span>G</span>ames</h2>
+            <!-- ------ <lord-icon src="https://cdn.lordicon.com/ibgjiwvi.json"
+                                      trigger="loop"
+                                      colors="primary:#00ffff,secondary:#ffffff"
+                                      style="width: 50px;height: 50px;">
+            </lord-icon> -->
+            <h2 class="title-text"><span>F</span>eatured Projects</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam fugiat nemo qui.</p>
         </div>
         <div class="content">
-            <div class="box" data-aos="flip-left">
+            <div class="box" data-modal="ModalTFG" data-aos="flip-left">
                 <div class="imgBx">
-                    <img src="media/games/bgmi.jpg" alt="">
+                    <img src="media/Proyectos/TFG/Title_page.png" alt="">
                 </div>
                 <div class="text">
-                    <h3>Battlegrounds Mobile India</h3>
+                    <h3>VR Escape Room to prevent Cognitive Impairment</h3>
                 </div>
             </div>
-            <div class="box" data-aos="flip-right">
+            <div class="box" data-modal="ModalCOD" data-aos="flip-right">
                 <div class="imgBx">
                     <img src="media/games/cod.jpg" alt="">
                 </div>
@@ -164,8 +176,110 @@
         </div>
         </div>
     </section>
+
+    <!-- Modal TFG Structure -->
+    <div id="ModalTFG" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="modal-title">Escape Room in Virtual Reality to prevent cognitive impairment </h2>
+            <video class="videoTFG" width="320" height="240" controls>
+                <source src="media/Proyectos/TFG/TFG-Lucila_multiplepuzzle.mp4" type="video/mp4">
+                <!--<source src="movie.ogg" type="video/ogg">-->
+                Your browser does not support the video tag.
+            </video>
+            <div class="modal-summary">
+                <h3>As my Bachelor's Thesis I developed a virtual reality escape room designed as a preventive tool against cognitive decline. I used Unreal Engine, employing Blueprints and C++, to implement the game logic, design interactive puzzle mechanics, and program the entire experience.</h3>
+                <div class="modal-photos">
+                    <img src="media/Proyectos/TFG/P_F_patos.png" alt="Photo 1">
+                    <img src="media/Proyectos/TFG/doble.png" alt="Photo 2">
+                </div>
+
+                <!--<h4 class="modal-title">Summary</h4>-->
+                <p class="modal-text">
+                    Cognitive decline is an increasingly significant issue in our society due to rising life expectancy, which leads to more cases of people affected by this condition. Characterized by a progressive decline in mental abilities such as memory, attention, and problem-solving, cognitive deterioration affects the quality of life of those who suffer from it. In this context, preventive strategies have become an area of great interest, with particular focus on the use of innovative technologies.
+                    <br />
+                    This project explores the development of a escape room using virtual reality technology as a preventive tool. By combining virtual reality and gamification, the project aims to create engaging challenges designed to stimulate users' cognitive abilities. This project achieves a natural interaction with elements in the virtual environment thanks to employing technologies for hand tracking and a realistic object-grasping system.
+                    <br />
+                    Additionally, a tracking system was implemented to monitor player performance, storing in-game metrics that can later be analyzed by professionals. This feature enhances the project's potential as an assessment tool, allowing for a more personalized approach to cognitive health monitoring.
+                </p>
+                <div class="modal-photos">
+                    <img src="media/Proyectos/TFG/P_F_figuras_facil.png" alt="Photo 1">
+                    <!--<img src="media/Proyectos/TFG/P_F_patos.png" alt="Photo 2">-->
+                    <!--<img src="media/Proyectos/TFG/doble.png" alt="Photo 5">-->
+                    <img src="media/Proyectos/TFG/E_F_salon3.png" alt="Photo 4">
+                    <img src="media/Proyectos/TFG/F_Propios.png" alt="Photo 6">
+                    <img src="media/Proyectos/TFG/P_F_Receta.png" alt="Photo 3">
+
+
+                </div>
+                <br>
+                <h4 class="modal-title">Achievments</h4>
+                <!--<p class="modal-text">
+                    A lo largo del desarrollo de este proyecto, se han logrado los siguientes hitos:
+                </p>-->
+                <ul>
+                    <li>
+                        <b>Creation of a Puzzle System:</b> Development of a modular system that
+                        allows customization of puzzles and streamlines their creation.
+                    </li>
+                    <li>
+                        <b>Puzzle Implementation:</b> Design and programming of interactive puzzles aimed at stimulating cognitive skills
+                        (addressing attention, comprehension and perception, logical reasoning, memory, and executive control, among others).
+                        The puzzles include different difficulty levels based on the user's abilities.
+                    </li>
+                    <li>
+                        <b>Analysis & Tracking:</b> Design of a data storage architecture in JSON format to record player performance
+                        (puzzle resolution time, object interaction, trajectory).
+                    </li>
+                    <li>
+                        <b>Gamification:</b> Application of gamification techniques to enhance user motivation and engagement.
+                    </li>
+                    <li>
+                        <b>Mechanics Programming:</b> Implementation of interactive mechanics.
+                    </li>
+                    <li>
+                        <b>Performance Optimization:</b> Implementation of interactive mechanics.
+                    </li>
+                    <li>
+                        <b>3D Modeling and Design:</b> Optimization to ensure a smooth experience without compromising graphic quality.
+                    </li>
+                </ul>
+                <br>
+                <h4>You can see how it was done. (The documentation is in Spanish)</h4>
+                <br>
+            </div>
+
+            <!--<div class="modal-photos">
+                <img src="media/Proyectos/TFG/F_Propios.png" alt="Photo 6">
+                <img src="media/Proyectos/TFG/P_F_Receta.png" alt="Photo 3">
+            </div>-->
+            <!--<p class="modal-text">Descripción del proyecto.</p>-->
+            <a href="media/docs/TFG_Lucila_Vazquez.pdf" download="Thesis_Lucila_Vazquez_Soriano" class="modal-link"><i class="fa-solid fa-download"></i> Download as PDF</a>
+            <!--<a href="#" class="modal-link">Enlace al proyecto</a>-->
+
+        </div>
+    </div>
+
+    <div id="ModalCOD" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 class="modal-title">CODo</h2>
+            <div class="modal-photos">
+                <img src="media/photo1.jpg" alt="Photo 1">
+                <img src="media/photo2.jpg" alt="Photo 2">
+                <img src="media/photo3.jpg" alt="Photo 3">
+                <img src="media/photo4.jpg" alt="Photo 4">
+                <img src="media/photo5.jpg" alt="Photo 5">
+                <img src="media/photo6.jpg" alt="Photo 6">
+            </div>
+            <p class="modal-text">Descripción del proyecto.</p>
+            <a href="#" class="modal-link">Enlace al proyecto</a>
+        </div>
+    </div>
+
+
     <!-- ----- -->
-    <!-- merchandise  -->
+    <!-- merchandise
     <section class="merchandise" id="merchandise">
         <div class="title">
             <lord-icon src="https://cdn.lordicon.com/ippkhukl.json"
@@ -207,7 +321,7 @@
                 </div>
                 <a href="#" class="know">Know More</a>
             </div>
-    </section>
+    </section> -->
     <!-- ----- -->
     <!-- contact  -->
     <section class="contact" id="contact">
@@ -269,5 +383,64 @@
             navigation.classList.toggle('active')
         }
     </script>
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        var modal = document.getElementById("ModalTFG");
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        /*// Get all elements with class="box"
+        var boxes = document.querySelectorAll('.box');
+
+        // Loop through the boxes and add click event listener
+        boxes.forEach(function (box) {
+            box.addEventListener('click', function () {
+                modal.style.display = "block";
+            });
+        });
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function () {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        } */
+        // Get all elements with class="box"
+        var boxes = document.querySelectorAll('.box');
+
+        // Loop through the boxes and add click event listener
+        boxes.forEach(function (box) {
+            box.addEventListener('click', function () {
+                var modalId = this.getAttribute('data-modal');
+                var modal = document.getElementById(modalId);
+                modal.style.display = "block";
+
+                // Get the <span> element that closes the modal
+                var span = modal.getElementsByClassName("close")[0];
+
+                // When the user clicks on <span> (x), close the modal
+                span.onclick = function () {
+                    modal.style.display = "none";
+                }
+
+                // When the user clicks anywhere outside of the modal, close it
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+            });
+        });
+    </script>
+
+
+
 </body>
 </html>
