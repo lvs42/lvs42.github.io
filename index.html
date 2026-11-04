@@ -1,531 +1,272 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game</title>
-
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lucila Vázquez Soriano · Data Scientist</title>
+  <meta name="description" content="Data Scientist con Máster en Ciencia de Datos (Universidad de Alicante). Machine learning, visión por computador, NLP e inferencia causal con Python.">
+  <link rel="canonical" href="https://lvs42.github.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Lucila Vázquez Soriano · Data Scientist">
+  <meta property="og:description" content="Machine learning, visión por computador, NLP e inferencia causal. Proyectos, TFM y publicaciones.">
+  <meta property="og:url" content="https://lvs42.github.io/">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#101216" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"Person","name":"Lucila Vázquez Soriano","jobTitle":"Data Scientist","url":"https://lvs42.github.io/","address":{"@type":"PostalAddress","addressLocality":"Alicante","addressCountry":"ES"},"alumniOf":"Universidad de Alicante","sameAs":["https://www.linkedin.com/in/lucilavazquezsoriano/","https://github.com/lvs42"]}
+  </script>
 </head>
 <body>
-    <nav>
-        <a href="#" class="logo">
-            <box-icon name='game' type='solid' color='#00FFFF'></box-icon>Home<span>/></span>
-        </a>
-        <div class="menuToggle" onclick="toggleMenu()">
-        </div>
-        <ul class="navigation">
+  <canvas class="bg-plot" aria-hidden="true"></canvas>
+  <a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
 
-            <!-- <li><a href="#banner" onclick="toggleMenu()">Start</a></li>
-            <li><a href="#about" onclick="toggleMenu()">About</a></li>-->
-            <li><a href="#about">About me</a></li>
-            <li><a href="#curriculum">Currículum</a></li>
-            <!--<li><a href="#sobre-mi2" onclick="toggleMenu()">Sobre mi 2</a></li> -->
-            <li><a href="#games" onclick="toggleMenu()">Featured Projects</a></li>
-            <!--<li><a href="#merchandise" onclick="toggleMenu()">Merchandise</a></li>-->
-            <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-
-
+  <header class="nav" id="top">
+    <div class="wrap nav__inner">
+      <a href="#top" class="logo" aria-label="Lucila Vázquez Soriano">Lucila Vázquez</a>
+      <nav aria-label="Principal">
+        <button class="nav__toggle" aria-expanded="false" aria-controls="menu">
+          <span class="sr-only" data-i18n="menu">Menú</span><span class="bars" aria-hidden="true"></span>
+        </button>
+        <ul id="menu" class="nav__menu">
+          <li><a href="#proyectos" data-i18n="nav.projects">Proyectos</a></li>
+          <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
+          <li><a href="#sobre-mi" data-i18n="nav.about">Sobre mí</a></li>
+          <li><a href="#publicaciones" data-i18n="nav.pubs">Publicaciones</a></li>
+          <li><a href="#contacto" data-i18n="nav.contact">Contacto</a></li>
         </ul>
-    </nav>
-    <section class="gradient" id="banner">
-        <div class="content">
-            <h1 class="title-title-text">
-                Lucila Vázquez Soriano
-            </h1>
-            <br>
-            <p class="frase">Future Techical artist. Hello and welcome to my page!</p>
-            <br>
-            <br>
-            <h4 class="soon">This website is still a work in progress. More content coming soon!</h4>
-            <!--<div id="section10" class="demo">
-        <a href="#about"><span></span></a>
-    </div>-->
-        </div>
-    </section>
-    <!-- about  -->
-    <section class="about" id="about">
-        <div class="row" data-aos="zoom-out-down">
-            <div class="col50">
-                <!-- <h2 class="title-text"><box-icon name='user-rectangle' type='solid' color='#00ffff' ></box-icon>About <span>Us</span></h2> -->
-                <h2 class="title-text">
-                    <lord-icon src="https://cdn.lordicon.com/nocovwne.json"
-                               trigger="loop"
-                               colors="primary:#00ffff,secondary:#ffffff"
-                               stroke="66"
-                               style="width: 50px;height: 50px;margin-top: -10px;">
-                    </lord-icon>About <span>Me</span>
-                </h2>
-                <p>
-                    I am a passionate Multimedia Engineer with a strong background in game development and virtual reality. I love creating immersive and interactive experiences that push the boundaries of technology. My work blends creativity and technical expertise, focusing on optimizing performance and designing engaging gameplay mechanics.
-                    <br>
-                    I thrive in collaborative environments, using agile methodologies to bring innovative projects to life. My curiosity drives me to continuously learn and adapt to new technologies, always looking for ways to improve and create impactful experiences.
-                    <br>
-                    When I’m not developing, I enjoy exploring new game mechanics, researching VR applications, and refining my 3D design skills. I’m always excited to take on new challenges and contribute to cutting-edge projects.
-                </p>
-                <br>
-                <br>
-                <br>
-                <h2 class="title-text">
-                    <lord-icon src="https://cdn.lordicon.com/nocovwne.json"
-                               trigger="loop"
-                               colors="primary:#00ffff,secondary:#ffffff"
-                               stroke="66"
-                               style="width: 50px;height: 50px;margin-top: -10px;">
-                    </lord-icon>Sobre <span>Mí</span>
-                </h2>
-                <p>
-                    Graduada en Ingeniera Multimedia con una sólida experiencia en desarrollo de videojuegos y realidad virtual. Me encanta crear experiencias inmersivas e interactivas que amplían los límites de la tecnología. Mi trabajo combina creatividad y conocimientos técnicos, con un enfoque en la optimización del rendimiento y el diseño de mecánicas de juego atractivas.
-                    <br>
-                    Me desenvuelvo bien en entornos colaborativos, utilizando metodologías ágiles para dar vida a proyectos innovadores. Mi curiosidad me impulsa a aprender y adaptarme constantemente a nuevas tecnologías, siempre buscando mejorar y crear experiencias impactantes.
-                    <br>
-                    Cuando no estoy desarrollando, disfruto explorando nuevas mecánicas de juego, investigando aplicaciones de realidad virtual y perfeccionando mis habilidades en diseño 3D. Siempre estoy entusiasmada por asumir nuevos desafíos y contribuir a proyectos de vanguardia.
-                </p>
-
-            </div>
-
-            <div class="col50">
-                <div class="imgBx">
-                    <img src="media/w2.jpeg" alt="">
-                </div>
-            </div>
-
-
-
-        </div>
-    </section>
-
-    <!-- ------
-    <section class="contact" id="aux">
-        <div id="section10" class="demo">
-            <a href="#curriculum"><span></span></a>
-        </div>
-    </section>
-        -->
-
-    <section id="skills2" class="skills-section">
-        <div class="title">
-            <h2 class="title-text"><span>Mis</span> Habilidades</h2>
-        </div>
-        <div class="skills-container">
-            <div class="skill">
-                <div class="skill-name">HTML</div>
-                <div class="skill-bar">
-                    <div class="skill-fill" style="width: 90%;"></div>
-                </div>
-            </div>
-            <div class="skill">
-                <div class="skill-name">CSS</div>
-                <div class="skill-bar">
-                    <div class="skill-fill" style="width: 85%;"></div>
-                </div>
-            </div>
-            <div class="skill">
-                <div class="skill-name">JavaScript</div>
-                <div class="skill-bar">
-                    <div class="skill-fill" style="width: 75%;"></div>
-                </div>
-            </div>
-            <!-- Agrega más habilidades según sea necesario -->
-        </div>
-    </section>
-
-    <!--<section id="skills">
-        <h2>Habilidades</h2>
-        <div class="skills-container">
-            <div class="skill-category">
-                <h3>Lenguajes de Programación</h3>
-                <ul>
-                    <li>C++</li>
-                    <li>C#</li>
-                    <li>HTML</li>
-                    <li>CSS</li>
-                    <li>JavaScript</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h3>Software de Diseño Gráfico</h3>
-                <ul>
-                    <li>Cinema 4D</li>
-                    <li>Blender</li>
-                    <li>RealFlow</li>
-                    <li>Vegas Pro</li>
-                    <li>Adobe After Effects</li>
-                    <li>Adobe Illustrator</li>
-                    <li>Adobe Photoshop</li>
-                    <li>Magic Bullet Looks</li>
-                    <li>Video Copilot</li>
-                    <li>Element 3D</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h3>Motor de Juegos</h3>
-                <ul>
-                    <li>Unity</li>
-                    <li>Game Maker Studio</li>
-                </ul>
-            </div>
-            <div class="skill-category">
-                <h3>Software de Producción Musical</h3>
-                <ul>
-                    <li>FL Studio</li>
-                </ul>
-            </div>
-        </div>
-    </section>-->
-
-    <section class="curriculum" id="curriculum">
-        <h1 class="title-text">
-            Lucila Vázquez Soriano
-        </h1>
-        <p>If you want, you can dowload mi resume.</p>
-        <a href="media/docs/Resume_Lucila_Vazquez_Soriano.pdf" download="Resume_Lucila_Vazquez_Soriano" class="boton-descarga"><i class="fa-solid fa-download"></i> Download Resume as PDF</a>
-        <a href="media/docs/CV_Lucila_Vazquez_Soriano.pdf" download="CV_Lucila_Vazquez_Soriano" class="boton-descarga"><i class="fa-solid fa-download"></i> Descargar curriculum como PDF</a>
-
-    </section>
-    <!-- ------ -->
-    <!-- ganes -->
-    <section id="games" class="game">
-        <div class="title">
-            <!-- ------ <lord-icon src="https://cdn.lordicon.com/ibgjiwvi.json"
-                                      trigger="loop"
-                                      colors="primary:#00ffff,secondary:#ffffff"
-                                      style="width: 50px;height: 50px;">
-            </lord-icon> -->
-            <h2 class="title-text"><span>F</span>eatured Projects</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam fugiat nemo qui.</p>
-        </div>
-        <div class="content">
-            <div class="box" data-modal="ModalTFG" data-aos="flip-left">
-                <div class="imgBx">
-                    <img src="media/Proyectos/TFG/Title_page.png" alt="">
-                </div>
-                <div class="text">
-                    <h3>VR Escape Room to prevent Cognitive Impairment</h3>
-                </div>
-            </div>
-            <div class="box" data-modal="ModalABP" data-aos="flip-right">
-                <div class="imgBx">
-                    <img src="media/Proyectos/Prometheus/PortadaEstirada.png" alt="">
-                </div>
-                <div class="text">
-                    <h3>Prometheus: Ignis Fur</h3>
-                </div>
-            </div>
-            <!--<div class="box" data-aos="flip-left">
-                <div class="imgBx">
-                    <img src="media/games/minecraft.jpg" alt="">
-                </div>
-                <div class="text">
-                    <h3>Minecraft</h3>
-                </div>
-            </div>
-            <div class="box" data-aos="flip-right">
-                <div class="imgBx">
-                    <img src="media/games/lords.png" alt="">
-                </div>
-                <div class="text">
-                    <h3>Lords Mobile</h3>
-                </div>
-            </div>
-            <div class="box" data-aos="flip-left">
-                <div class="imgBx">
-                    <img src="media/games/pokemon.jpg" alt="">
-                </div>
-                <div class="text">
-                    <h3>Pokemob Unite</h3>
-                </div>
-            </div>
-            <div class="box" data-aos="flip-right">
-                <div class="imgBx">
-                    <img src="media/games/freefire.jpg" alt="">
-                </div>
-                <div class="text">
-                    <h3>Garena Free Fire</h3>
-                </div>
-            </div>-->
-        </div>
-        </div>
-    </section>
-
-    <!-- Modal TFG Structure -->
-    <div id="ModalTFG" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <h2 class="modal-title">Escape Room in Virtual Reality to prevent cognitive impairment </h2>
-            <video class="videoTFG" width="320" height="240" controls>
-                <source src="media/Proyectos/TFG/TFG-Lucila_multiplepuzzle.mp4" type="video/mp4">
-                <!--<source src="movie.ogg" type="video/ogg">-->
-                Your browser does not support the video tag.
-            </video>
-            <div class="modal-summary">
-                <h3>As my Bachelor's Thesis I developed a virtual reality escape room designed as a preventive tool against cognitive decline. I used Unreal Engine, employing Blueprints and C++, to implement the game logic, design interactive puzzle mechanics, and program the entire experience.</h3>
-                <div class="modal-photos">
-                    <img src="media/Proyectos/TFG/P_F_patos.png" alt="Photo 1">
-                    <img src="media/Proyectos/TFG/doble.png" alt="Photo 2">
-                </div>
-
-                <!--<h4 class="modal-title">Summary</h4>-->
-                <p class="modal-text">
-                    Cognitive decline is an increasingly significant issue in our society due to rising life expectancy, which leads to more cases of people affected by this condition. Characterized by a progressive decline in mental abilities such as memory, attention, and problem-solving, cognitive deterioration affects the quality of life of those who suffer from it. In this context, preventive strategies have become an area of great interest, with particular focus on the use of innovative technologies.
-                    <br />
-                    This project explores the development of a escape room using virtual reality technology as a preventive tool. By combining virtual reality and gamification, the project aims to create engaging challenges designed to stimulate users' cognitive abilities. This project achieves a natural interaction with elements in the virtual environment thanks to employing technologies for hand tracking and a realistic object-grasping system.
-                    <br />
-                    Additionally, a tracking system was implemented to monitor player performance, storing in-game metrics that can later be analyzed by professionals. This feature enhances the project's potential as an assessment tool, allowing for a more personalized approach to cognitive health monitoring.
-                </p>
-                <div class="modal-photos">
-                    <img src="media/Proyectos/TFG/P_F_figuras_facil.png" alt="Photo 1">
-                    <!--<img src="media/Proyectos/TFG/P_F_patos.png" alt="Photo 2">-->
-                    <!--<img src="media/Proyectos/TFG/doble.png" alt="Photo 5">-->
-                    <img src="media/Proyectos/TFG/E_F_salon3.png" alt="Photo 4">
-                    <img src="media/Proyectos/TFG/F_Propios.png" alt="Photo 6">
-                    <img src="media/Proyectos/TFG/P_F_Receta.png" alt="Photo 3">
-
-
-                </div>
-                <br>
-                <h4 class="modal-title">Achievments</h4>
-                <!--<p class="modal-text">
-                    A lo largo del desarrollo de este proyecto, se han logrado los siguientes hitos:
-                </p>-->
-                <ul>
-                    <li>
-                        <b>Creation of a Puzzle System:</b> Development of a modular system that
-                        allows customization of puzzles and streamlines their creation.
-                    </li>
-                    <li>
-                        <b>Puzzle Implementation:</b> Design and programming of interactive puzzles aimed at stimulating cognitive skills
-                        (addressing attention, comprehension and perception, logical reasoning, memory, and executive control, among others).
-                        The puzzles include different difficulty levels based on the user's abilities.
-                    </li>
-                    <li>
-                        <b>Analysis & Tracking:</b> Design of a data storage architecture in JSON format to record player performance
-                        (puzzle resolution time, object interaction, trajectory).
-                    </li>
-                    <li>
-                        <b>Gamification:</b> Application of gamification techniques to enhance user motivation and engagement.
-                    </li>
-                    <li>
-                        <b>Mechanics Programming:</b> Implementation of interactive mechanics.
-                    </li>
-                    <li>
-                        <b>Performance Optimization:</b> Implementation of interactive mechanics.
-                    </li>
-                    <li>
-                        <b>3D Modeling and Design:</b> Optimization to ensure a smooth experience without compromising graphic quality.
-                    </li>
-                </ul>
-                <br>
-                <h4>You can see how it was done. (The documentation is in Spanish)</h4>
-                <br>
-            </div>
-
-            <!--<div class="modal-photos">
-                <img src="media/Proyectos/TFG/F_Propios.png" alt="Photo 6">
-                <img src="media/Proyectos/TFG/P_F_Receta.png" alt="Photo 3">
-            </div>-->
-            <!--<p class="modal-text">Descripción del proyecto.</p>-->
-            <a href="media/docs/TFG_Lucila_Vazquez.pdf" download="Thesis_Lucila_Vazquez_Soriano" class="modal-link"><i class="fa-solid fa-download"></i> Download as PDF</a>
-            <!--<a href="#" class="modal-link">Enlace al proyecto</a>-->
-
-        </div>
+      </nav>
+      <button class="lang" id="lang" aria-label="Change language to English">EN</button>
     </div>
+  </header>
 
-    <div id="ModalABP" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <!--<h2 class="modal-title">Prometheus: Ignis Fur</h2>-->
-            <!-- <div class="Promethes-title"> </div>-->
-            <div class="modal-prometheus-banner">
-                <img src="media/Proyectos/Prometheus/bannerPrometheus.png" alt="Photo 1">
-            </div>
-            <br />
-
-            <div class="h_iframe">
-                <iframe width="90%" height="315" src="https://www.youtube.com/embed/Uko8CAJ6Vp0?si=6csQ5vak-VepfitF" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </div>
-            <div class="modal-photos">
-                <img src="media/Proyectos/Prometheus/P1.png" alt="Photo 1">
-                <img src="media/Proyectos/Prometheus/P2.png" alt="Photo 2">
-                <img src="media/Proyectos/Prometheus/P_menu.png" alt="Photo 3">
-                <img src="media/Proyectos/Prometheus/PCajaF.png" alt="Photo 4">
-                <img src="media/Proyectos/Prometheus/POto.png" alt="Photo 5">
-                <img src="media/Proyectos/Prometheus/Pcueva.png" alt="Photo 6">
-            </div>
-            
-            <a href="https://scythegames.itch.io/prometheus-ignis-fur">
-                <img src="media/itchioB.png" alt="link to itch.io" />
-            </a>
+  <main id="main">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="wrap">
+        <h1>Lucila Vázquez Soriano</h1>
+        <p class="hero__role" data-i18n="hero.role">Data Scientist · Machine Learning &amp; Computer Vision</p>
+        <p class="hero__lead" data-i18n="hero.lead">Convierto datos en modelos fiables y conclusiones claras: desde clasificar imágenes histopatológicas con deep learning hasta medir efectos causales del entorno urbano.</p>
+        <p class="hero__edu" data-i18n="hero.eyebrow">Máster en Ciencia de Datos · Universidad de Alicante</p>
+        <div class="hero__cta">
+          <a class="btn btn--primary" href="#proyectos" data-i18n="hero.cta1">Ver proyectos</a>
+          <a class="btn" id="cv-link" href="assets/docs/CV_Lucila_Vazquez_ES.pdf" download data-i18n="hero.cta2">Descargar CV</a>
         </div>
-    </div>
-
-
-    <!-- ----- -->
-    <!-- merchandise
-    <section class="merchandise" id="merchandise">
-        <div class="title">
-            <lord-icon src="https://cdn.lordicon.com/ippkhukl.json"
-                       trigger="loop"
-                       colors="primary:#00ffff,secondary:#ffffff"
-                       style="width: 50px;height: 50px;">
-            </lord-icon>
-            <h2 class="title-text">Gaming <span>Merchandise</span></h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam fugiat nemo qui.</p>
-        </div>
-        <div class="content">
-            <div class="box box-1" data-aos="zoom-out-down">
-                <div class="imgBx">
-                    <img src="media/merchandise/streak-hoodie.jpg" alt="">
-                </div>
-                <div class="text">
-                    <h3>Hoodies</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo neque debitis vel aut nam voluptatibus veniam quam deserunt dicta soluta?</p>
-                </div>
-                <a href="#" class="know">Know More</a>
-            </div>
-            <div class="box box-2" data-aos="zoom-out-down">
-                <div class="imgBx">
-                    <img src="media/merchandise/mask.jpg" alt="">
-                </div>
-                <div class="text">
-                    <h3>Mask</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo neque debitis vel aut nam voluptatibus veniam quam deserunt dicta soluta?</p>
-                </div>
-                <a href="#" class="know">Know More</a>
-            </div>
-            <div class="box box-3" data-aos="zoom-out-down">
-                <div class="imgBx">
-                    <img src="media/merchandise/mobile-collabs.jpg" alt="">
-                </div>
-                <div class="text">
-                    <h3>T-shirts</h3>
-                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Illo neque debitis vel aut nam voluptatibus veniam quam deserunt dicta soluta?</p>
-                </div>
-                <a href="#" class="know">Know More</a>
-            </div>
-    </section> -->
-    <!-- ----- -->
-    <!-- contact  -->
-    <section class="contact" id="contact">
-        <div class="content">
-            <div class="text">
-                <h3>Send Us A Message</h3>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis a impedit nulla neque alias temporibus.</p>
-            </div>
-            <div class="contactForm">
-                <form action="mesage.php">
-                    <div class="row100">
-                        <div class="inputBox50">
-                            <input type="text" name="fullname" id="" placeholder="Full Name">
-                        </div>
-                        <div class="inputBox50">
-                            <input type="email" name="fullname" id="" placeholder="Email Adress">
-                        </div>
-                    </div>
-                    <div class="row100">
-                        <div class="inputBox100">
-                            <textarea name="messages" placeholder="Message"></textarea>
-                        </div>
-                    </div>
-                    <div class="row100">
-                        <div class="inputBox100">
-                            <input type="submit" value="Send">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="social">
-                <li><a href="https://www.linkedin.com/in/smruti-ranjan-nayak/"><img src="media/icon/linkedin.png" alt=""></a></li>
-                <li><a href="https://www.instagram.com/sm8uti/"><img src="media/icon/instagram.png" alt=""></a></li>
-                <li><a href="#"><img src="media/icon/facebook.png" alt=""></a></li>
-            </div>
-        </div>
-        <p class="copyright">Desgin & Developed By<a href="https://github.com/sm8UTI/"> SM8UTI</a></p>
+        <ul class="inline-links">
+          <li><a href="https://github.com/lvs42" rel="me noopener" target="_blank">GitHub</a></li>
+          <li><a href="https://www.linkedin.com/in/lucilavazquezsoriano/" rel="me noopener" target="_blank">LinkedIn</a></li>
+          <li><a href="mailto:lucilavsoriano@gmail.com">lucilavsoriano@gmail.com</a></li>
+        </ul>
+      </div>
     </section>
-    <!-- ----- -->
-    <!-- script -->
-    <script src="https://unpkg.com/boxicons@2.1.1/dist/boxicons.js"></script>
-    <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script>
-        AOS.init({
-            offset: 300,
-            duration: 2000,
-        });
-    </script>
-    <script type="text/javascript">
-        window.addEventListener('scroll', function () {
-            const header = document.querySelector('nav');
-            header.classList.toggle("sticky", window.scrollY > 0);
-        })
-        function toggleMenu() {
-            const menuToggle = document.querySelector('.menuToggle');
-            const navigation = document.querySelector('.navigation');
-            menuToggle.classList.toggle('active')
-            navigation.classList.toggle('active')
-        }
-    </script>
-    <script>
-        // Get the modal
-        var modal = document.getElementById("myModal");
-        var modal = document.getElementById("ModalTFG");
 
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
+    <!-- PROYECTOS -->
+    <section id="proyectos" class="section">
+      <div class="wrap">
+        <header class="section__head">
+          <h2 data-i18n="projects.title">Proyectos destacados</h2>
+          <p class="section__sub" data-i18n="projects.sub">Trabajos del máster con datos reales: problema, enfoque, resultado y limitaciones.</p>
+        </header>
 
-        /*// Get all elements with class="box"
-        var boxes = document.querySelectorAll('.box');
+        <!-- TFM -->
+        <article class="feature">
+          <div class="feature__text">
+            <h3 data-i18n="tfm.title">Detección de cáncer gástrico en imágenes histopatológicas</h3>
+            <p class="meta" data-i18n="tfm.tag">TFM · Visión por computador · Salud</p>
+            <p data-i18n="tfm.p1">Clasificación Normal / Anormal de 245.196 parches del conjunto público GasHisSDB (80, 120 y 160 px). Referencia: EfficientNetV2-B0 preentrenado como extractor + CatBoost; sobre ella evalúo aumento de datos y un módulo de atención CBAM.</p>
+            <ul class="facts">
+              <li data-i18n-html="tfm.f1"><strong>94,70 %</strong> de accuracy con CBAM a 160 px (frente a 93,24 % de la referencia).</li>
+              <li data-i18n-html="tfm.f2">Validación cruzada estratificada de 5 pliegues y <strong>5 semillas</strong> por experimento; desbalance compensado con pesos de clase.</li>
+              <li data-i18n-html="tfm.f3">Transferencia asimétrica entre tamaños: entrenar a 80 px y evaluar a 160 conserva <strong>85,28 %</strong>; al revés cae a 67,38 %.</li>
+              <li data-i18n-html="tfm.f4">Interpretabilidad con mapas de atención y SHAP, y una limitación explícita: sin agrupar por paciente, las métricas pueden ser optimistas.</li>
+            </ul>
+            <p class="stack">Python · PyTorch · timm · CatBoost · scikit-learn · SHAP · OpenCV · Docker</p>
+            <p class="links">
+              <a href="assets/docs/TFM_Lucila_Vazquez_Soriano_Final.pdf" target="_blank" data-i18n="tfm.l1">Memoria (PDF)</a>
+              <a href="assets/docs/Resumen_TFM_Lucila_Vazquez_Soriano.pdf" target="_blank" data-i18n="tfm.l2">Resumen (PDF)</a>
+              <a href="https://github.com/lvs42/GastricCancer" target="_blank" rel="noopener" data-i18n="tfm.l3">Código</a>
+            </p>
+          </div>
+          <figure class="viz" id="tfm-viz">
+            <figcaption>
+              <span class="viz__title" data-i18n="viz.title">Resultados por tamaño de parche</span>
+              <span class="viz__sub" data-i18n="viz.sub">Media de 5 semillas, %</span>
+            </figcaption>
+            <div class="seg" role="radiogroup" aria-label="Métrica">
+              <button role="radio" aria-checked="true" data-metric="acc">Accuracy</button>
+              <button role="radio" aria-checked="false" data-metric="sens" data-i18n="viz.sens">Sensibilidad</button>
+              <button role="radio" aria-checked="false" data-metric="spec" data-i18n="viz.spec">Especificidad</button>
+            </div>
+            <ul class="legend" aria-hidden="true">
+              <li><i style="background:var(--s1)"></i><span data-i18n="viz.ref">Referencia</span></li>
+              <li><i style="background:var(--s2)"></i><span data-i18n="viz.aug">Aumento de datos</span></li>
+              <li><i style="background:var(--s3)"></i>CBAM</li>
+            </ul>
+            <div class="viz__plot"><svg role="img" aria-labelledby="viz-desc"></svg><div class="tip" hidden></div></div>
+            <p id="viz-desc" class="sr-only" data-i18n="viz.desc">Gráfico de puntos: CBAM obtiene el mejor resultado en los tres tamaños de parche; el rendimiento crece con el tamaño.</p>
+            <details class="viz__table">
+              <summary data-i18n="viz.table">Ver tabla de datos</summary>
+              <table><thead><tr><th>px</th><th data-i18n="viz.ref">Referencia</th><th data-i18n="viz.aug">Aumento de datos</th><th>CBAM</th></tr></thead><tbody></tbody></table>
+            </details>
+          </figure>
+        </article>
 
-        // Loop through the boxes and add click event listener
-        boxes.forEach(function (box) {
-            box.addEventListener('click', function () {
-                modal.style.display = "block";
-            });
-        });
+        <!-- Project index -->
+        <ol class="work">
+          <li class="work__item">
+            <div class="work__main">
+              <h3 data-i18n="p1.title">Detección explicable de sexismo online</h3>
+              <p class="meta">NLP · Transformers</p>
+              <p data-i18n="p1.desc">SemEval-2023 Task 10 (EDOS): detección binaria, categoría y vector fino de sexismo. Comparo modelos clásicos sobre TF-IDF con DistilBERT y RoBERTa, estrategias de balanceo y un enfoque jerárquico.</p>
+              <p class="stack">Hugging Face · PyTorch · scikit-learn · TF-IDF</p>
+            </div>
+            <p class="work__metric"><span class="num">0,80</span><span data-i18n="p1.metric">F1 macro en la tarea binaria (DistilBERT + TF-IDF)</span></p>
+          </li>
 
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function () {
-            modal.style.display = "none";
-        }
+          <li class="work__item">
+            <div class="work__main">
+              <h3 data-i18n="p2.title">Efecto causal del entorno urbano en el uso de la bici</h3>
+              <p class="meta" data-i18n="p2.tag">Inferencia causal · Movilidad</p>
+              <p data-i18n="p2.desc">Londres, conteos oficiales del Department for Transport desde 2008 e imágenes Street View en serie temporal. Binomial negativa, g-computation, Propensity Score Matching y Causal Forest.</p>
+              <p class="stack">Python · Causal Forest · PSM · <span data-i18n="chip.geo">Datos geoespaciales</span></p>
+            </div>
+            <p class="work__metric"><span class="num">4</span><span data-i18n="p2.metric">métodos coinciden: el carril bici visible aumenta el uso; la pendiente lo frena</span></p>
+          </li>
 
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        } */
-        // Get all elements with class="box"
-        var boxes = document.querySelectorAll('.box');
+          <li class="work__item">
+            <div class="work__main">
+              <h3 data-i18n="p3.title">Madrid, ¿ciudad de 15 minutos?</h3>
+              <p class="meta" data-i18n="p3.tag">Geoespacial · Políticas urbanas</p>
+              <p data-i18n="p3.desc">Accesibilidad a destinos esenciales por barrio a pie, en bici y en coche sobre redes de OpenStreetMap: isócronas, normalización e índice combinado. Proyecto en equipo de cuatro personas.</p>
+              <p class="stack">OpenStreetMap · pandas · Plotly · Web scraping</p>
+            </div>
+            <p class="work__metric"><span class="num">3</span><span data-i18n="p3.metric">modos de transporte comparados; gradiente claro centro–periferia</span></p>
+          </li>
 
-        // Loop through the boxes and add click event listener
-        boxes.forEach(function (box) {
-            box.addEventListener('click', function () {
-                var modalId = this.getAttribute('data-modal');
-                var modal = document.getElementById(modalId);
-                modal.style.display = "block";
+          <li class="work__item">
+            <div class="work__main">
+              <h3 data-i18n="p4.title">Población real de un destino turístico</h3>
+              <p class="meta" data-i18n="p4.tag">Análisis de datos · Turismo</p>
+              <p data-i18n="p4.desc">Torrevieja: estimación de la población efectiva mensual cruzando padrón, FRONTUR, vivienda turística del INE y puntos de interés, más un análisis de qué datos faltan para medirla bien.</p>
+              <p class="stack">GeoPandas · OSMnx · NetworkX · Plotly</p>
+              <p class="links"><a href="proyectos/torrevieja-mapa.html" target="_blank" data-i18n="p4.link">Abrir mapa interactivo</a></p>
+            </div>
+            <p class="work__metric"><span class="num">4</span><span data-i18n="p4.metric">fuentes oficiales integradas en un mapa interactivo</span></p>
+          </li>
 
-                // Get the <span> element that closes the modal
-                var span = modal.getElementsByClassName("close")[0];
+          <li class="work__item">
+            <div class="work__main">
+              <h3 data-i18n="p5.title">Clasificación de grafos con GNN</h3>
+              <p class="meta">Deep Learning · Grafos</p>
+              <p data-i18n="p5.desc">Variantes de GCN espectrales sobre cinco benchmarks (MUTAG, PROTEINS, ENZYMES, IMDB-BINARY, REDDIT-BINARY), evaluadas con 10 semillas y analizadas con proyecciones t-SNE de los embeddings.</p>
+              <p class="stack">PyTorch Geometric · NetworkX · scikit-learn</p>
+            </div>
+            <p class="work__metric"><span class="num">5</span><span data-i18n="p5.metric">datasets de moléculas, proteínas y redes sociales</span></p>
+          </li>
 
-                // When the user clicks on <span> (x), close the modal
-                span.onclick = function () {
-                    modal.style.display = "none";
-                }
+          <li class="work__item">
+            <div class="work__main">
+              <h3 data-i18n="p6.title">Calibración de redes neuronales</h3>
+              <p class="meta">ML · Fiabilidad</p>
+              <p data-i18n="p6.desc">Una CNN que acierta no siempre sabe cuánto acierta. Comparo temperature scaling y focal loss midiendo ECE y diagramas de fiabilidad, y el compromiso entre calibración y accuracy.</p>
+              <p class="stack">TensorFlow / Keras · NumPy · Matplotlib</p>
+            </div>
+            <p class="work__metric"><span class="num">ECE</span><span data-i18n="p6.metric">mínimo con focal loss (γ = 1) + temperature scaling</span></p>
+          </li>
+        </ol>
 
-                // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function (event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-                }
-            });
-        });
-    </script>
+        <h3 class="more__title" data-i18n="more.title">Más trabajo del máster</h3>
+        <ul class="more">
+          <li data-i18n="more.1">Smart lighting serverless en Azure: Functions + AI Vision detectan personas y vehículos en cámaras públicas.</li>
+          <li data-i18n="more.2">Pipeline de análisis de sentimiento sobre reseñas con NLTK, balanceo y modelos clásicos.</li>
+          <li data-i18n-html="more.3">Clasificación supervisada con árboles de decisión y otros clasificadores, publicada en <a href="https://www.kaggle.com/code/sergiomendiolaarraez/md-p2-sergio-lucila" target="_blank" rel="noopener">Kaggle</a>.</li>
+          <li data-i18n="more.4">ETL con Apache Hop y OpenRefine, web scraping y datos en tiempo real (London rail).</li>
+          <li data-i18n="more.5">Redes bayesianas y modelos gráficos probabilísticos en R.</li>
+          <li data-i18n="more.6">Aprendizaje estadístico en R Markdown: regresión, SVM, PCA; y optimización con algoritmos genéticos.</li>
+        </ul>
+      </div>
+    </section>
 
+    <!-- SKILLS -->
+    <section id="skills" class="section">
+      <div class="wrap">
+        <header class="section__head">
+          <h2 data-i18n="skills.title">Skills</h2>
+        </header>
+        <dl class="skills">
+          <div><dt data-i18n="skills.lang">Lenguajes</dt><dd>Python · R · C++ · Java</dd></div>
+          <div><dt>Machine Learning</dt><dd>scikit-learn · CatBoost · <span data-i18n="skills.ml">validación cruzada · calibración · desbalance</span></dd></div>
+          <div><dt>Deep Learning</dt><dd>PyTorch · TensorFlow/Keras · timm · PyTorch Geometric · CNN · <span data-i18n="skills.att">atención</span> · GNN</dd></div>
+          <div><dt>NLP</dt><dd>Hugging Face Transformers · BERT/RoBERTa · TF-IDF · embeddings · NLTK</dd></div>
+          <div><dt data-i18n="skills.stats">Estadística y causalidad</dt><dd data-i18n="skills.stats2">Inferencia causal · PSM · g-computation · redes bayesianas · SHAP</dd></div>
+          <div><dt data-i18n="skills.data">Datos y visualización</dt><dd>pandas · GeoPandas · OSMnx · Plotly · Matplotlib · seaborn · <span data-i18n="skills.scraping">web scraping</span> · Apache Hop</dd></div>
+          <div><dt data-i18n="skills.tools">Herramientas</dt><dd>Git · Docker · Azure (Functions, AI Vision) · Jupyter · Colab · LaTeX</dd></div>
+          <div><dt data-i18n="skills.langs">Idiomas</dt><dd data-i18n="skills.langs2">Español · Catalán · Inglés · Japonés</dd></div>
+        </dl>
+      </div>
+    </section>
 
+    <!-- SOBRE MI -->
+    <section id="sobre-mi" class="section">
+      <div class="wrap about">
+        <header class="section__head">
+          <h2 data-i18n="about.title">Sobre mí</h2>
+        </header>
+        <div class="about__text">
+          <p data-i18n="about.p1">Vengo de la Ingeniería Multimedia, donde aprendí a programar en serio (C++, Unreal Engine, realidad virtual) y a pensar en la persona que usa lo que construyo. Mi TFG, un escape room en VR para frenar el deterioro cognitivo en personas mayores, acabó en un artículo científico… y en la pregunta que me llevó al máster: ¿cómo medimos si algo funciona?</p>
+          <p data-i18n="about.p2">En el Máster en Ciencia de Datos me he especializado en machine learning, visión por computador e inferencia causal. Me importa tanto el número final como saber cuándo no fiarse de él: validar con varias semillas, explicar los modelos y documentar las limitaciones.</p>
+          <p data-i18n="about.p3">Busco mi primer rol como Data Scientist / ML Engineer, en Alicante o en remoto. Disponibilidad inmediata.</p>
+        </div>
+        <ol class="timeline">
+          <li><time class="num">2025 – 2026</time><strong data-i18n="tl.1">Máster en Ciencia de Datos</strong><span>Universidad de Alicante</span></li>
+          <li><time class="num">2024</time><strong data-i18n="tl.2">TFG · Escape room en realidad virtual</strong><span data-i18n="tl.2b">Unreal Engine, C++ · estimulación cognitiva</span></li>
+          <li><time class="num">2023</time><strong data-i18n="tl.3">Desarrolladora en prácticas</strong><span data-i18n="tl.3b">Arquitectura cliente-servidor (Socket.IO, C++) para VR multiusuario</span></li>
+          <li><time class="num">2019 – 2025</time><strong data-i18n="tl.4">Grado en Ingeniería Multimedia</strong><span>Universidad de Alicante</span></li>
+        </ol>
+      </div>
+    </section>
 
+    <!-- PUBLICACIONES -->
+    <section id="publicaciones" class="section">
+      <div class="wrap">
+        <header class="section__head">
+          <h2 data-i18n="pubs.title">Publicaciones</h2>
+        </header>
+        <article class="pub">
+          <h3>VR Escape Room to Prevent Cognitive Decline in Older Adults</h3>
+          <p class="meta">SOCO 2025 · Salamanca</p>
+          <p class="pub__authors">D. Mulero-Pérez, <strong>L. Vázquez-Soriano</strong>, M. Benavent-Lledo, D. Ortiz-Perez, J. Garcia-Rodriguez</p>
+          <p data-i18n="pubs.desc">20th International Conference on Soft Computing Models in Industrial and Environmental Applications. Escape room en VR con hand-tracking en Unreal Engine y un sistema de registro del rendimiento en tiempo real para su análisis por profesionales sanitarios.</p>
+          <p class="links"><a href="assets/docs/TFG_Lucila_Vazquez.pdf" target="_blank" data-i18n="pubs.tfg">TFG relacionado (PDF)</a></p>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="section contact">
+      <div class="wrap">
+        <h2 data-i18n="contact.title">¿Hablamos?</h2>
+        <p class="section__sub" data-i18n="contact.sub">Estoy buscando mi primer puesto en ciencia de datos. Si tienes una oferta o un problema con datos, escríbeme.</p>
+        <a class="btn btn--primary btn--lg" href="mailto:lucilavsoriano@gmail.com">lucilavsoriano@gmail.com</a>
+        <ul class="inline-links contact__links">
+          <li><a href="https://www.linkedin.com/in/lucilavazquezsoriano/" target="_blank" rel="me noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/lvs42" target="_blank" rel="me noopener">GitHub</a></li>
+          <li><a href="assets/docs/CV_Lucila_Vazquez_ES.pdf" id="cv-link2" download data-i18n="contact.cv">CV (PDF)</a></li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>© 2026 Lucila Vázquez Soriano · <span data-i18n="footer">Hecho a mano con HTML, CSS y JavaScript</span></p></div>
+  </footer>
+
+  <script src="assets/js/i18n.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>
