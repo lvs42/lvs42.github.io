@@ -78,7 +78,7 @@ a:hover { text-decoration-thickness: 2px; }
 }
 .nav.is-scrolled { border-color: var(--line); }
 .nav__inner { display: flex; align-items: center; gap: 16px; height: 68px; }
-.logo { font: 500 1.25rem var(--font-display); color: var(--fg); text-decoration: none; margin-right: auto; letter-spacing: -.01em; }
+.logo { font: 500 clamp(1.05rem, .95rem + .4vw, 1.25rem) var(--font-display); color: var(--fg); text-decoration: none; margin-right: auto; letter-spacing: -.01em; }
 .nav__menu { display: flex; gap: 2px; list-style: none; margin: 0; padding: 0; }
 .nav__menu a { display: block; padding: 8px 12px; border-radius: 6px; color: var(--muted); text-decoration: none; font-size: .95rem; transition: color .2s var(--ease); }
 .nav__menu a:hover { color: var(--fg); }
@@ -137,7 +137,7 @@ a:hover { text-decoration-thickness: 2px; }
 /* ---------- Hero ---------- */
 .hero { min-height: min(calc(100svh - 68px), 860px); display: grid; align-items: center; padding: 72px 0 96px; }
 .hero h1 { font-size: clamp(3rem, 1.4rem + 6.4vw, 5.75rem); font-weight: 400; letter-spacing: -.03em; line-height: 1; margin-bottom: .35em; }
-.hero__role { font-size: clamp(1.15rem, 1rem + .7vw, 1.5rem); font-weight: 500; color: var(--accent-ink); margin-bottom: 1.1em; }
+.hero__role { display: inline-block; font-size: clamp(1.3rem, 1.05rem + 1.1vw, 1.95rem); font-weight: 600; letter-spacing: -.01em; line-height: 1.25; color: var(--accent-ink); margin-bottom: 1em; padding-bottom: .3em; border-bottom: 3px solid var(--accent); }
 .hero__lead { font-size: clamp(1.1rem, 1rem + .4vw, 1.3rem); line-height: 1.55; max-width: 56ch; }
 .hero__edu { color: var(--muted); font-size: .98rem; }
 .hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) clamp(220px, 28vw, 360px); gap: clamp(32px, 5vw, 72px); align-items: center; }
