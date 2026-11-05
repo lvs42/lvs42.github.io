@@ -56,10 +56,12 @@
   });
   menu.addEventListener('click', e => { if (e.target.closest('a')) closeMenu(); });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
-  const root = document.documentElement;
+  const bg = $('.bg-plot');
+  let fade = '';
   const onScroll = () => {
     nav.classList.toggle('is-scrolled', scrollY > 8);
-    root.style.setProperty('--plot-fade', Math.min(1, scrollY / (innerHeight * .7)).toFixed(3));
+    const f = Math.min(1, scrollY / (innerHeight * .7)).toFixed(2);
+    if (bg && f !== fade) { fade = f; bg.style.setProperty('--plot-fade', f); } // on the canvas only: cheap restyle
   };
   addEventListener('scroll', onScroll, { passive: true }); onScroll();
 
@@ -166,6 +168,7 @@
     const ctx = canvas.getContext('2d');
     let w = 0, h = 0, P = { x0: 0, x1: 0, y0: 0, y1: 0 }, pts = [], raf = 0;
     let scene = 0, sceneT = 0, prog = 0, last = 0, lastW = 0, nnEdges = [], extra = {};
+    const gridLayer = document.createElement('canvas'), gctx = gridLayer.getContext('2d'); let dprNow = 1;
     const C = {};
     const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
     const readColors = () => { ['--accent', '--s1', '--s2', '--s3', '--grid', '--fg', '--muted'].forEach(k => (C[k] = css(k))); };
@@ -179,7 +182,7 @@
       en: ['raw data · n = {n}', 'histogram · normal density', 'linear regression · least squares', 'k-means · k = 3',
            'classification · decision boundary', 'gradient descent · loss function', 'neural network · image → prediction'],
     };
-    const SCENES = 7, HOLD = 8000, BASE_HOLD = 4500; // ms per scene; the raw cloud (0) is the base between scenes
+    const SCENES = 7, HOLD = 8000, BASE_HOLD = 22000; // ms per scene; the raw cloud (0) is the base between scenes
     const ORDER = [0, 1, 0, 2, 0, 3, 0, 4, 0, 5, 0, 6]; let seq = 0;
 
     // scene constants (normalised plot coords, y grows downward)
@@ -267,10 +270,11 @@
     }
 
     function resize() {
-      const dpr = Math.min(devicePixelRatio || 1, 2), r = canvas.getBoundingClientRect();
+      const dpr = Math.min(devicePixelRatio || 1, 1.5), r = canvas.getBoundingClientRect(); dprNow = dpr;
       w = r.width; h = r.height;
       canvas.width = w * dpr; canvas.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       P = { x0: w * .04, x1: w * .96, y0: h * .08, y1: h * .9 };
+      buildGrid();
       if (pts.length && w === lastW) { draw(last || 0); return; } // height-only change (mobile URL bar): keep points
       lastW = w;
       const n = Math.round(Math.min(220, Math.max(80, (w * h) / 7000)));
@@ -279,15 +283,18 @@
       prog = 1; draw(0);
     }
 
-    function grid() { // light chart gridlines across the whole viewport
+    function buildGrid() { // light chart gridlines, rendered once per resize/theme and blitted each frame
+      gridLayer.width = canvas.width; gridLayer.height = canvas.height;
+      gctx.setTransform(dprNow, 0, 0, dprNow, 0, 0);
       const step = Math.max(64, Math.round(Math.min(w, h) / 6));
       const ox = (w % step) / 2, oy = (h % step) / 2;
-      ctx.strokeStyle = C['--grid']; ctx.lineWidth = 1; ctx.globalAlpha = 1;
-      ctx.beginPath();
-      for (let x = ox; x <= w; x += step) { const X = Math.round(x) + .5; ctx.moveTo(X, 0); ctx.lineTo(X, h); }
-      for (let y = oy; y <= h; y += step) { const Y = Math.round(y) + .5; ctx.moveTo(0, Y); ctx.lineTo(w, Y); }
-      ctx.stroke();
+      gctx.strokeStyle = C['--grid']; gctx.lineWidth = 1;
+      gctx.beginPath();
+      for (let x = ox; x <= w; x += step) { const X = Math.round(x) + .5; gctx.moveTo(X, 0); gctx.lineTo(X, h); }
+      for (let y = oy; y <= h; y += step) { const Y = Math.round(y) + .5; gctx.moveTo(0, Y); gctx.lineTo(w, Y); }
+      gctx.stroke();
     }
+    const grid = () => { ctx.setTransform(1, 0, 0, 1, 0, 0); ctx.drawImage(gridLayer, 0, 0); ctx.setTransform(dprNow, 0, 0, dprNow, 0, 0); };
 
     const colorOf = p => {
       if (scene === 3) return C[['--s1', '--s2', '--s3'][p.k]];
@@ -372,11 +379,18 @@
       grid();
       overlay(time);
       const jit = reduced.matches ? 0 : 1.2; // gentle breathing jitter, in px
+      const groups = new Map();
       pts.forEach(p => {
         const big = scene === 6 && p.role !== 'pt';
-        const x = px(p.x) + (big ? 0 : Math.cos(time / 900 + p.ph) * jit), y = py(p.y) + (big ? 0 : Math.sin(time / 1100 + p.ph) * jit);
-        ctx.globalAlpha = p.alpha; ctx.fillStyle = colorOf(p);
-        ctx.beginPath(); ctx.arc(x, y, big ? 7 : p.r, 0, 6.283); ctx.fill();
+        const key = colorOf(p) + '|' + Math.round(p.alpha * 10);
+        let g = groups.get(key); if (!g) groups.set(key, (g = []));
+        g.push(px(p.x) + (big ? 0 : Math.cos(time / 900 + p.ph) * jit), py(p.y) + (big ? 0 : Math.sin(time / 1100 + p.ph) * jit), big ? 7 : p.r);
+      });
+      groups.forEach((g, key) => {
+        const [color, a] = key.split('|');
+        ctx.fillStyle = color; ctx.globalAlpha = a / 10; ctx.beginPath();
+        for (let i = 0; i < g.length; i += 3) { ctx.moveTo(g[i] + g[i + 2], g[i + 1]); ctx.arc(g[i], g[i + 1], g[i + 2], 0, 6.283); }
+        ctx.fill();
       });
       ctx.globalAlpha = 1;
       // caption, bottom-right
@@ -389,7 +403,8 @@
     }
 
     function tick(time) {
-      const dt = Math.min(50, time - (last || time)); last = time;
+      if (last && time - last < 30) { raf = requestAnimationFrame(tick); return; }
+      const dt = Math.min(66, time - (last || time)); last = time;
       sceneT += dt;
       if (sceneT > (scene ? HOLD : BASE_HOLD)) { sceneT = 0; seq = (seq + 1) % ORDER.length; scene = ORDER[seq]; prog = 0; targets(scene); }
       const k = 1 - Math.pow(1 - .022, dt / 16.7);
@@ -398,17 +413,22 @@
       draw(time);
       raf = requestAnimationFrame(tick);
     }
-    const start = () => { if (!raf && !document.hidden && !reduced.matches) { last = 0; raf = requestAnimationFrame(tick); } };
+    let booted = false;
+    const start = () => { if (booted && !raf && !document.hidden && !reduced.matches) { last = 0; raf = requestAnimationFrame(tick); } };
     const stop = () => { cancelAnimationFrame(raf); raf = 0; };
     const settle = s => { scene = s; targets(s); pts.forEach(p => { p.x = p.tx; p.y = p.ty; }); prog = 1; };
     document.addEventListener('visibilitychange', () => (document.hidden ? stop() : start()));
-    reduced.addEventListener('change', () => { stop(); if (reduced.matches) settle(6); draw(0); start(); });
-    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { readColors(); draw(last || 0); });
-    new MutationObserver(() => draw(last || 0)).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
-    let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(resize, 150); });
-    readColors();
-    if (reduced.matches) scene = 6; // static frame: the neural-network view
-    resize(); start();
-    if (document.fonts) document.fonts.ready.then(() => draw(last || 0));
+    reduced.addEventListener('change', () => { if (!booted) return; stop(); if (reduced.matches) settle(6); draw(0); start(); });
+    matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { if (!booted) return; readColors(); buildGrid(); draw(last || 0); });
+    new MutationObserver(() => booted && draw(last || 0)).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+    let rt; addEventListener('resize', () => { if (!booted) return; clearTimeout(rt); rt = setTimeout(resize, 150); });
+    const boot = () => {
+      readColors();
+      if (reduced.matches) scene = 6; // static frame: the neural-network view
+      booted = true; resize(); canvas.classList.add('is-on'); start();
+      if (document.fonts) document.fonts.ready.then(() => draw(last || 0));
+    };
+    const idle = () => (window.requestIdleCallback ? requestIdleCallback(boot, { timeout: 1200 }) : setTimeout(boot, 200));
+    if (document.readyState === 'complete') idle(); else addEventListener('load', idle, { once: true });
   }
 })();
