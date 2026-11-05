@@ -66,9 +66,9 @@ a:hover { text-decoration-thickness: 2px; }
 /* Page background: animated scatter plot (see main.js) */
 .bg-plot { position: fixed; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none;
   opacity: 0; will-change: opacity; }
-.bg-plot.is-on { opacity: calc(.6 - .4 * var(--plot-fade, 0)); animation: plot-in 1.2s var(--ease); }
+.bg-plot.is-on { opacity: calc(.6 - .15 * var(--plot-fade, 0)); animation: plot-in 1.2s var(--ease); }
 @keyframes plot-in { from { opacity: 0; } } /* full in the hero, recedes behind reading content */
-@media (max-width: 760px) { .bg-plot.is-on { opacity: calc(.4 - .27 * var(--plot-fade, 0)); } }
+@media (max-width: 760px) { .bg-plot.is-on { opacity: calc(.42 - .1 * var(--plot-fade, 0)); } }
 
 /* ---------- Nav ---------- */
 .nav {
@@ -141,8 +141,6 @@ a:hover { text-decoration-thickness: 2px; }
 .hero__lead { font-size: clamp(1.1rem, 1rem + .4vw, 1.3rem); line-height: 1.55; max-width: 56ch; }
 .hero__edu { color: var(--muted); font-size: .98rem; }
 .hero { overflow-x: clip; }
-.hero__text { position: relative; isolation: isolate; }
-.hero__text::before { content: ""; position: absolute; inset: -12% -18% -12% -30%; z-index: -1; pointer-events: none; background: radial-gradient(closest-side, var(--bg) 62%, transparent); } /* clears the animated background behind the hero text */
 .hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) clamp(220px, 28vw, 360px); gap: clamp(32px, 5vw, 72px); align-items: center; }
 .hero__photo { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 20px; box-shadow: 0 18px 48px -24px rgb(0 0 0 / .45); }
 @media (max-width: 760px) { .hero__grid { grid-template-columns: 1fr; gap: 28px; } .hero__photo { order: -1; width: min(200px, 55vw); border-radius: 50%; aspect-ratio: 1; object-position: 50% 22%; } }
@@ -361,16 +359,9 @@ a:hover { text-decoration-thickness: 2px; }
 @media (forced-colors: active) { .viz .dot { stroke: CanvasText; } }
 @media print { .nav, .bg-plot, .lang { display: none; } }
 
-/* Readable text over the animated background: every content column gets a soft panel of the page colour
-   that fades out at its edges, so dots stay visible in the margins (same idea as the hero) */
-.section > .wrap, .p-hero > .wrap, .p-sec > .wrap, .footer > .wrap { position: relative; isolation: isolate; }
-.section > .wrap::before, .p-hero > .wrap::before, .p-sec > .wrap::before, .footer > .wrap::before {
-  content: ""; position: absolute; inset: -40px -56px; z-index: -1; pointer-events: none; background: var(--bg);
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 56px, #000 calc(100% - 56px), transparent),
-                      linear-gradient(to bottom, transparent, #000 40px, #000 calc(100% - 40px), transparent);
-  -webkit-mask-composite: source-in;
-  mask-image: linear-gradient(to right, transparent, #000 56px, #000 calc(100% - 56px), transparent),
-              linear-gradient(to bottom, transparent, #000 40px, #000 calc(100% - 40px), transparent);
-  mask-composite: intersect;
+/* Readable text over the animated background: only the text blocks get a soft backing of the page colour
+   (background + blurred shadow of the same colour), so the animation stays visible everywhere else */
+:is(.hero, .section, .p-hero, .p-sec, .footer) :is(h1, h2, h3, h4, p, li, dt, dd, figcaption, summary, table, .crumb):not(:is(.viz, .flow, .mx, .folds, .stk, .fig) *) {
+  background: var(--bg); box-shadow: 0 0 14px 6px var(--bg); border-radius: 6px;
 }
-.section, .p-hero, .p-sec, .footer { overflow-x: clip; }
+:is(.section, .p-hero, .p-sec, .footer) { overflow-x: clip; }

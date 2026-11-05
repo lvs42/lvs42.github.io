@@ -198,7 +198,7 @@
     function targets(s) {
       const n = pts.length;
       pts.forEach(p => { p.role = 'pt'; p.alpha = .75; p.layer = -1; });
-      if (s === 0) pts.forEach(p => { p.tx = .5 + gauss() * .2; p.ty = .5 + gauss() * .2; });
+      if (s === 0) pts.forEach(p => { p.tx = .5 + gauss() * .26; p.ty = .5 + gauss() * .24; });
 
       else if (s === 1) { // histogram: stack points into bins of a normal sample
         const bw = (HIST.x1 - HIST.x0) / HIST.bins, counts = new Array(HIST.bins).fill(0);
@@ -273,11 +273,11 @@
       const dpr = Math.min(devicePixelRatio || 1, 1.5), r = canvas.getBoundingClientRect(); dprNow = dpr;
       w = r.width; h = r.height;
       canvas.width = w * dpr; canvas.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      P = { x0: w * .04, x1: w * .96, y0: h * .08, y1: h * .9 };
+      P = { x0: w * .015, x1: w * .985, y0: h * .1, y1: h * .95 }; // whole viewport (top clears the nav)
       buildGrid();
       if (pts.length && w === lastW) { draw(last || 0); return; } // height-only change (mobile URL bar): keep points
       lastW = w;
-      const n = Math.round(Math.min(220, Math.max(80, (w * h) / 7000)));
+      const n = Math.round(Math.min(300, Math.max(90, (w * h) / 4800)));
       pts = Array.from({ length: n }, (_, i) => ({ k: i % 3, x: .5, y: .5, tx: .5, ty: .5, r: 2.4 + Math.random() * 1.6, ph: Math.random() * 6.28, alpha: .75 }));
       targets(scene); pts.forEach(p => { p.x = p.tx; p.y = p.ty; });
       prog = 1; draw(0);
