@@ -360,3 +360,17 @@ a:hover { text-decoration-thickness: 2px; }
 }
 @media (forced-colors: active) { .viz .dot { stroke: CanvasText; } }
 @media print { .nav, .bg-plot, .lang { display: none; } }
+
+/* Readable text over the animated background: every content column gets a soft panel of the page colour
+   that fades out at its edges, so dots stay visible in the margins (same idea as the hero) */
+.section > .wrap, .p-hero > .wrap, .p-sec > .wrap, .footer > .wrap { position: relative; isolation: isolate; }
+.section > .wrap::before, .p-hero > .wrap::before, .p-sec > .wrap::before, .footer > .wrap::before {
+  content: ""; position: absolute; inset: -40px -56px; z-index: -1; pointer-events: none; background: var(--bg);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 56px, #000 calc(100% - 56px), transparent),
+                      linear-gradient(to bottom, transparent, #000 40px, #000 calc(100% - 40px), transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 56px, #000 calc(100% - 56px), transparent),
+              linear-gradient(to bottom, transparent, #000 40px, #000 calc(100% - 40px), transparent);
+  mask-composite: intersect;
+}
+.section, .p-hero, .p-sec, .footer { overflow-x: clip; }
