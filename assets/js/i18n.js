@@ -8,6 +8,7 @@ window.I18N_EN = {
   "nav.pubs": "Publications",
   "nav.contact": "Contact",
   "hero.eyebrow": "MSc in Data Science · University of Alicante",
+  "hero.photo": "Portrait of Lucila Vázquez Soriano",
   "hero.role": "Data Scientist · Machine Learning & Computer Vision",
   "hero.lead": "I turn data into reliable models and clear conclusions: from classifying histopathology images with deep learning to measuring causal effects of the urban environment.",
   "hero.cta1": "See projects",
