@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Población real de un destino turístico · Lucila Vázquez Soriano</title>
+  <meta name="description" content="Estimación de la población efectiva mensual de Torrevieja cruzando padrón, FRONTUR, vivienda turística y puntos de interés.">
+  <meta name="x-title-en" content="Real population of a tourist destination · Lucila Vázquez Soriano">
+  <meta name="x-desc-en" content="Estimating Torrevieja’s effective monthly population by combining census, FRONTUR, tourist housing and points of interest.">
+  <link rel="canonical" href="https://lvs42.github.io/proyectos/torrevieja.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Población real de un destino turístico · Lucila Vázquez Soriano">
+  <meta property="og:description" content="Estimación de la población efectiva mensual de Torrevieja cruzando padrón, FRONTUR, vivienda turística y puntos de interés.">
+  <meta property="og:url" content="https://lvs42.github.io/proyectos/torrevieja.html">
+  <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#101216" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="project">
+  <a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+  <header class="nav" id="top">
+    <div class="wrap nav__inner">
+      <a href="../index.html" class="logo" aria-label="Lucila Vázquez Soriano">Lucila Vázquez</a>
+      <nav aria-label="Principal">
+        <button class="nav__toggle" aria-expanded="false" aria-controls="menu">
+          <span class="sr-only" data-i18n="menu">Menú</span><span class="bars" aria-hidden="true"></span>
+        </button>
+        <ul id="menu" class="nav__menu"><li><a href="../index.html#proyectos" data-i18n="nav.projects">Proyectos</a></li><li><a href="../index.html#skills" data-i18n="nav.skills">Skills</a></li><li><a href="../index.html#sobre-mi" data-i18n="nav.about">Sobre mí</a></li><li><a href="../index.html#publicaciones" data-i18n="nav.pubs">Publicaciones</a></li><li><a href="../index.html#contacto" data-i18n="nav.contact">Contacto</a></li></ul>
+      </nav>
+      <button class="lang" id="lang" aria-label="Change language to English">EN</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="p-hero">
+      <div class="wrap">
+        <a class="crumb" href="../index.html#proyectos"><span aria-hidden="true">←</span> <span data-i18n="pp.back">Todos los proyectos</span></a>
+        <h1 data-i18n="top.h1">Población real de un destino turístico</h1>
+        <p class="meta" data-i18n="top.meta">Minería de Datos · Análisis de datos · Turismo</p>
+        <p class="lead" data-i18n-html="top.lead">En Torrevieja, el padrón no dice cuánta gente hay realmente en la ciudad. Estimo la población efectiva de cada mes cruzando fuentes oficiales, mido su estacionalidad y la presión sobre los recursos, y señalo qué datos faltan para medirla bien.</p>
+        <p class="links"><a href="torrevieja-mapa.html" target="_blank" data-i18n="top.l1">Abrir el mapa interactivo</a></p>
+        <dl class="keyfacts"><div><dt data-i18n="top.k1">Fuentes</dt><dd data-i18n-html="top.v1">Padrón (INE) · FRONTUR · vivienda turística (INE y GVA) · OpenStreetMap</dd></div><div><dt data-i18n="top.k2">Pico</dt><dd data-i18n-html="top.v2">Agosto · <span class="num">≈ 317.000</span> personas de media</dd></div><div><dt data-i18n="top.k3">Valle</dt><dd data-i18n-html="top.v3">Febrero · <span class="num">≈ 136.000</span></dd></div><div><dt data-i18n="top.k4">Pico / valle</dt><dd data-i18n-html="top.v4"><span class="num">2,33 ×</span></dd></div></dl>
+        
+      </div>
+    </section>
+    <section class="p-sec" id="poblacion">
+      <div class="wrap">
+        <h2 data-i18n="top.s1">Reto 1 · Población efectiva</h2>
+        <p data-i18n-html="top.s1.p1">La estimación mensual parte del padrón y suma los turistas nacionales e internacionales alojados. Como también hay excursionistas que no pernoctan pero consumen recursos, los aproximo aplicando a Torrevieja la proporción nacional entre excursionistas y turistas de FRONTUR:</p><p data-i18n-html="top.s1.f"><span class="code">total(mes) = padrón + turistas(mes) · (1 + excursionistas ÷ turistas en España)</span></p><figure class="fig"><img src="../assets/img/p/torrevieja/poblacion.jpg" alt="Serie temporal de la población estimada de Torrevieja con sus componentes" data-i18n-alt="top.fig1.alt" width="1387" height="590" loading="lazy" decoding="async"><figcaption data-i18n-html="top.fig1.cap">Población efectiva estimada y sus componentes: en verano llega a duplicar o triplicar la población empadronada.</figcaption></figure><p class="note" style="margin-top:24px" data-i18n-html="top.s1.p2">La mayor dificultad no es solo que falten datos, sino evitar <strong>contar a la misma persona dos veces</strong> al combinar fuentes que se solapan.</p>
+      </div>
+    </section>
+    <section class="p-sec" id="estacionalidad">
+      <div class="wrap">
+        <h2 data-i18n="top.s2">Retos 2 a 4 · Estacionalidad, vivienda turística y presión</h2>
+        <div class="cols"><figure class="fig"><img src="../assets/img/p/torrevieja/estacional.jpg" alt="Gráfico de barras del índice estacional por mes" data-i18n-alt="top.fig2.alt" width="1100" height="453" loading="lazy" decoding="async"><figcaption data-i18n-html="top.fig2.cap">Índice estacional (población del mes ÷ media anual): agosto es el pico y febrero el valle.</figcaption></figure><figure class="fig"><img src="../assets/img/p/torrevieja/vut.jpg" alt="Comparativa entre la estimación de viviendas turísticas del INE y el registro de la GVA" data-i18n-alt="top.fig3.alt" width="1087" height="490" loading="lazy" decoding="async"><figcaption data-i18n-html="top.fig3.cap">Viviendas de uso turístico: el INE da mejor el total y la GVA, la ubicación, pero ninguna registra bien las bajas.</figcaption></figure></div><div class="cols" style="margin-top:40px"><figure class="fig"><img src="../assets/img/p/torrevieja/pois.jpg" alt="Mapa de Torrevieja en cuadrícula coloreada por densidad de puntos de interés" data-i18n-alt="top.fig4.alt" width="950" height="990" loading="lazy" decoding="async"><figcaption data-i18n-html="top.fig4.cap">Densidad de puntos de interés de OpenStreetMap por celda.</figcaption></figure><div><h3 style="margin-top:0" data-i18n="top.s3.h">Qué datos faltan</h3><p data-i18n="top.s3.p">La segunda parte del trabajo fue tan importante como la primera: identificar qué no se puede responder con los datos actuales.</p><ul class="facts"><li data-i18n-html="top.s3.l.1">Población presente por día, a partir de registros de movilidad y ocupación.</li><li data-i18n-html="top.s3.l.2">Una base única de viviendas turísticas con altas, bajas, dirección exacta y ocupación real.</li><li data-i18n-html="top.s3.l.3">Consumo de agua, residuos y aforo de playas por día y zona para medir la presión ambiental.</li></ul><p class="stack">Python · pandas · GeoPandas · OSMnx · Plotly</p></div></div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <a class="next" href="gnn.html"><small data-i18n="pp.next">Siguiente proyecto</small><span class="t"><span data-i18n="p5.title">Clasificación de grafos con GNN</span> <span class="arrow" aria-hidden="true">→</span></span></a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>© 2026 Lucila Vázquez Soriano · <span data-i18n="footer">Hecha a mano con HTML, CSS y JavaScript</span></p></div>
+  </footer>
+  <script src="../assets/js/i18n.js" defer></script>
+  <script src="../assets/js/i18n-projects.js" defer></script>
+  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/project-charts.js" defer></script>
+</body>
+</html>

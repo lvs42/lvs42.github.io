@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Efecto causal del entorno urbano en la bici · Lucila Vázquez Soriano</title>
+  <meta name="description" content="Inferencia causal sobre el uso de la bici en Londres con Street View, segmentación semántica, PSM, g-computation y Causal Forest.">
+  <meta name="x-title-en" content="Causal effect of the built environment on cycling · Lucila Vázquez Soriano">
+  <meta name="x-desc-en" content="Causal inference on cycling in London with Street View, semantic segmentation, PSM, g-computation and Causal Forest.">
+  <link rel="canonical" href="https://lvs42.github.io/proyectos/causal-londres.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Efecto causal del entorno urbano en la bici · Lucila Vázquez Soriano">
+  <meta property="og:description" content="Inferencia causal sobre el uso de la bici en Londres con Street View, segmentación semántica, PSM, g-computation y Causal Forest.">
+  <meta property="og:url" content="https://lvs42.github.io/proyectos/causal-londres.html">
+  <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#101216" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="project">
+  <a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+  <header class="nav" id="top">
+    <div class="wrap nav__inner">
+      <a href="../index.html" class="logo" aria-label="Lucila Vázquez Soriano">Lucila Vázquez</a>
+      <nav aria-label="Principal">
+        <button class="nav__toggle" aria-expanded="false" aria-controls="menu">
+          <span class="sr-only" data-i18n="menu">Menú</span><span class="bars" aria-hidden="true"></span>
+        </button>
+        <ul id="menu" class="nav__menu"><li><a href="../index.html#proyectos" data-i18n="nav.projects">Proyectos</a></li><li><a href="../index.html#skills" data-i18n="nav.skills">Skills</a></li><li><a href="../index.html#sobre-mi" data-i18n="nav.about">Sobre mí</a></li><li><a href="../index.html#publicaciones" data-i18n="nav.pubs">Publicaciones</a></li><li><a href="../index.html#contacto" data-i18n="nav.contact">Contacto</a></li></ul>
+      </nav>
+      <button class="lang" id="lang" aria-label="Change language to English">EN</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="p-hero">
+      <div class="wrap">
+        <a class="crumb" href="../index.html#proyectos"><span aria-hidden="true">←</span> <span data-i18n="pp.back">Todos los proyectos</span></a>
+        <h1 data-i18n="cap.h1">Efecto causal del entorno urbano en el uso de la bici</h1>
+        <p class="meta" data-i18n="cap.meta">Modelado Computacional · Inferencia causal · Londres</p>
+        <p class="lead" data-i18n-html="cap.lead">¿Un carril bici, más vegetación o una cuesta cambian cuánta gente pedalea? Con conteos oficiales de ciclistas en Londres e imágenes de Street View de varios años, estimo estos efectos con cuatro métodos y compruebo si llegan a la misma conclusión.</p>
+        
+        <dl class="keyfacts"><div><dt data-i18n="cap.k1">Periodo</dt><dd data-i18n-html="cap.v1">2008 – 2024</dd></div><div><dt data-i18n="cap.k2">Fuentes</dt><dd data-i18n-html="cap.v2">Conteos del Department for Transport · Street View · OpenStreetMap</dd></div><div><dt data-i18n="cap.k3">Métodos</dt><dd data-i18n-html="cap.v3">Binomial negativa · g-computation · PSM · Causal Forest</dd></div><div><dt data-i18n="cap.k4">Hallazgo</dt><dd data-i18n-html="cap.v4">Carril bici ↑ · pendiente ↓</dd></div></dl>
+        
+      </div>
+    </section>
+    <section class="p-sec" id="datos">
+      <div class="wrap">
+        <h2 data-i18n="cap.s1">Del píxel a la variable</h2>
+        <div class="cols"><div><p data-i18n="cap.s1.p1">Para cada punto de conteo descargué las panorámicas de Street View en un radio de 100 m, de todos los años disponibles. Un modelo de segmentación semántica panóptica entrenado en Mapillary Vistas clasifica cada píxel (vegetación, carril bici, acera, vehículo, persona…). La proporción de cada categoría se convierte en una variable del entorno.</p><p data-i18n-html="cap.s1.p2">Usar <strong>series temporales</strong> de imágenes es la clave: permite relacionar un cambio en el entorno, como la llegada de un carril bici, con cambios posteriores en el número de ciclistas. Las imágenes se unen a los conteos por punto, año y mes, con una tolerancia de ±31 días.</p></div><figure class="fig"><img src="../assets/img/p/causal/vegetacion.jpg" alt="Mapa de Londres con la vegetación y el conteo medio de ciclistas" data-i18n-alt="cap.fig1.alt" width="1100" height="1100" loading="lazy" decoding="async"><figcaption data-i18n-html="cap.fig1.cap">Co-distribución espacial de la vegetación y el conteo medio de ciclistas.</figcaption></figure></div>
+      </div>
+    </section>
+    <section class="p-sec" id="metodos">
+      <div class="wrap">
+        <h2 data-i18n="cap.s2">Cuatro métodos, una pregunta</h2>
+        <div class="cols"><div><ul class="facts"><li data-i18n-html="cap.s2.l.1"><strong>Binomial negativa</strong> (y ZINB): modela conteos con sobredispersión, controlando año y mes.</li><li data-i18n-html="cap.s2.l.2"><strong>g-computation:</strong> estima el efecto medio simulando cada observación con y sin la característica.</li><li data-i18n-html="cap.s2.l.3"><strong>Propensity Score Matching:</strong> compara zonas parecidas en todo lo demás.</li><li data-i18n-html="cap.s2.l.4"><strong>Causal Forest:</strong> estima efectos heterogéneos (CATE), es decir, cómo cambia el efecto según la zona.</li></ul><p data-i18n="cap.s2.p1">Si métodos con supuestos distintos coinciden en una conclusión, esa conclusión es más fiable.</p></div><figure class="fig"><img src="../assets/img/p/causal/horas.jpg" alt="Mapa de calor de ciclistas por hora y día de la semana" data-i18n-alt="cap.fig2.alt" width="530" height="455" loading="lazy" decoding="async"><figcaption data-i18n-html="cap.fig2.cap">Promedio de ciclistas por hora y día de la semana: los conteos se hacen de día, lo que sesga variables como la iluminación.</figcaption></figure></div>
+      </div>
+    </section>
+    <section class="p-sec" id="resultados">
+      <div class="wrap">
+        <h2 data-i18n="cap.s3">Resultados</h2>
+        <div class="cols cols--wide"><div><ul class="facts"><li data-i18n-html="cap.s3.l.1"><strong>El carril bici visible</strong> tiene la asociación positiva más clara y consistente: aparece con g-computation y tras el matching.</li><li data-i18n-html="cap.s3.l.2"><strong>La pendiente</strong> es una barrera física: se asocia a menos ciclistas en todos los métodos y definiciones.</li><li data-i18n-html="cap.s3.l.3"><strong>La vegetación</strong> es más matizada: su efecto varía según el contexto urbano, como muestra la dispersión del Causal Forest.</li><li data-i18n-html="cap.s3.l.4">Con g-computation, la iluminación y el aparcamiento no muestran evidencia suficiente. Además, los conteos se hacen de día, lo que sesga la iluminación.</li></ul><p class="note" data-i18n-html="cap.s3.p">Un caso concreto: en Sutton, uno de los barrios con más zonas verdes, no renovar un carril bici coincidió con una caída del uso de la bicicleta.</p></div><figure class="fig"><img src="../assets/img/p/causal/cate.jpg" alt="Diagrama de cajas de los efectos estimados por Causal Forest para cinco variables" data-i18n-alt="cap.fig3.alt" width="1400" height="933" loading="lazy" decoding="async"><figcaption data-i18n-html="cap.fig3.cap">Efectos estimados por Causal Forest para cada característica del entorno.</figcaption></figure></div><div class="cols" style="margin-top:40px"><figure class="fig"><img src="../assets/img/p/causal/barrios.jpg" alt="Mapa de los barrios de Londres coloreados por el cambio en el conteo de ciclistas" data-i18n-alt="cap.fig4.alt" width="725" height="405" loading="lazy" decoding="async"><figcaption data-i18n-html="cap.fig4.cap">Cambio temporal del conteo medio de ciclistas por barrio.</figcaption></figure><div><h3 style="margin-top:0" data-i18n="cap.s4.h">Limitaciones</h3><ul class="facts"><li data-i18n-html="cap.s4.l.1">Son datos observacionales: los métodos reducen el sesgo, pero no sustituyen a un experimento.</li><li data-i18n-html="cap.s4.l.2">Queda autocorrelación espacial en los residuos, así que las conclusiones deben leerse con cautela.</li><li data-i18n-html="cap.s4.l.3">Los conteos diarios se estiman a partir de conteos horarios diurnos.</li></ul><p class="stack">Python · zensvi · Mapillary Vistas · Causal Forest · PSM · g-computation</p></div></div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <a class="next" href="madrid-15-minutos.html"><small data-i18n="pp.next">Siguiente proyecto</small><span class="t"><span data-i18n="p3.title">Madrid, ¿ciudad de 15 minutos?</span> <span class="arrow" aria-hidden="true">→</span></span></a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>© 2026 Lucila Vázquez Soriano · <span data-i18n="footer">Hecha a mano con HTML, CSS y JavaScript</span></p></div>
+  </footer>
+  <script src="../assets/js/i18n.js" defer></script>
+  <script src="../assets/js/i18n-projects.js" defer></script>
+  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/project-charts.js" defer></script>
+</body>
+</html>

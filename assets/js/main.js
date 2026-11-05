@@ -12,54 +12,54 @@
   const ES = {};
   $$('[data-i18n]').forEach(el => { ES[el.dataset.i18n] = el.textContent; });
   $$('[data-i18n-html]').forEach(el => { ES[el.dataset.i18nHtml] = el.innerHTML; });
+  // Page metadata: Spanish comes from the document, English from <meta name="x-title-en|x-desc-en">
+  const metaEn = n => { const m = $(`meta[name="${n}"]`); return m ? m.content : null; };
+  const desc = $('meta[name="description"]');
   const META = {
-    es: {
-      title: document.title,
-      desc: $('meta[name="description"]').content,
-      cv: 'assets/docs/CV_Lucila_Vazquez_ES.pdf',
-      btn: 'EN', btnLabel: 'Change language to English',
-    },
-    en: {
-      title: 'Lucila Vázquez Soriano · Data Scientist',
-      desc: 'Data Scientist with an MSc in Data Science (University of Alicante). Machine learning, computer vision, NLP and causal inference with Python.',
-      cv: 'assets/docs/CV_Lucila_Vazquez.pdf',
-      btn: 'ES', btnLabel: 'Cambiar idioma a español',
-    },
+    es: { title: document.title, desc: desc && desc.content, cv: 'CV_Lucila_Vazquez_ES.pdf', btn: 'EN', btnLabel: 'Change language to English' },
+    en: { title: metaEn('x-title-en') || document.title, desc: metaEn('x-desc-en') || (desc && desc.content), cv: 'CV_Lucila_Vazquez.pdf', btn: 'ES', btnLabel: 'Cambiar idioma a español' },
   };
   let lang = 'es';
   let chart = null;
+  // shared with page scripts (charts on the project pages)
+  window.site = { get lang() { return lang; }, t: k => (lang === 'en' ? EN : ES)[k] };
 
   function setLang(l) {
     lang = l;
     const dict = l === 'en' ? EN : ES;
     $$('[data-i18n]').forEach(el => { const v = dict[el.dataset.i18n]; if (v != null) el.textContent = v; });
     $$('[data-i18n-html]').forEach(el => { const v = dict[el.dataset.i18nHtml]; if (v != null) el.innerHTML = v; });
+    $$('[data-i18n-alt]').forEach(el => { const v = dict[el.dataset.i18nAlt]; if (v != null) el.alt = v; });
     const m = META[l];
     document.documentElement.lang = l;
     document.title = m.title;
-    $('meta[name="description"]').content = m.desc;
-    $('#cv-link').href = m.cv; $('#cv-link2').href = m.cv;
-    const b = $('#lang'); b.textContent = m.btn; b.setAttribute('aria-label', m.btnLabel);
+    if (desc && m.desc) desc.content = m.desc;
+    $$('.cv-link').forEach(a => { a.href = a.getAttribute('href').replace(/CV_Lucila_Vazquez(_ES)?\.pdf$/, m.cv); });
+    const b = $('#lang'); if (b) { b.textContent = m.btn; b.setAttribute('aria-label', m.btnLabel); }
     chart && chart.render(true);
+    document.dispatchEvent(new CustomEvent('langchange', { detail: l }));
   }
+  $$('[data-i18n-alt]').forEach(el => { ES[el.dataset.i18nAlt] = el.alt; });
   const saved = store.get('lang');
   const browserEs = (navigator.languages || [navigator.language]).some(x => /^es\b/i.test(x || ''));
   setLang(saved || (browserEs ? 'es' : 'en'));
-  $('#lang').addEventListener('click', () => { setLang(lang === 'es' ? 'en' : 'es'); store.set('lang', lang); });
+  if ($('#lang')) $('#lang').addEventListener('click', () => { setLang(lang === 'es' ? 'en' : 'es'); store.set('lang', lang); });
 
   /* ---------------- nav ---------------- */
   const nav = $('.nav'), toggle = $('.nav__toggle'), menu = $('#menu');
-  const closeMenu = () => { toggle.setAttribute('aria-expanded', 'false'); menu.classList.remove('is-open'); };
-  toggle.addEventListener('click', () => {
-    const open = toggle.getAttribute('aria-expanded') !== 'true';
-    toggle.setAttribute('aria-expanded', String(open)); menu.classList.toggle('is-open', open);
-  });
-  menu.addEventListener('click', e => { if (e.target.closest('a')) closeMenu(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  if (toggle && menu) {
+    const closeMenu = () => { toggle.setAttribute('aria-expanded', 'false'); menu.classList.remove('is-open'); };
+    toggle.addEventListener('click', () => {
+      const open = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', String(open)); menu.classList.toggle('is-open', open);
+    });
+    menu.addEventListener('click', e => { if (e.target.closest('a')) closeMenu(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
+  }
   const bg = $('.bg-plot');
   let fade = '';
   const onScroll = () => {
-    nav.classList.toggle('is-scrolled', scrollY > 8);
+    if (nav) nav.classList.toggle('is-scrolled', scrollY > 8);
     const f = Math.min(1, scrollY / (innerHeight * .7)).toFixed(2);
     if (bg && f !== fade) { fade = f; bg.style.setProperty('--plot-fade', f); } // on the canvas only: cheap restyle
   };
@@ -67,7 +67,7 @@
 
   const links = $$('.nav__menu a');
   const spy = new IntersectionObserver(entries => entries.forEach(e => {
-    if (e.isIntersecting) links.forEach(a => a.setAttribute('aria-current', String(a.hash === '#' + e.target.id)));
+    if (e.isIntersecting) links.forEach(a => a.setAttribute('aria-current', String(a.hash === '#' + e.target.id && a.pathname === location.pathname)));
   }), { rootMargin: '-45% 0px -50% 0px' });
   $$('main section[id]').forEach(s => spy.observe(s));
 

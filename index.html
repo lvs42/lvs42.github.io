@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Lucila Vázquez Soriano · Data Scientist</title>
   <meta name="description" content="Data Scientist con Máster en Ciencia de Datos (Universidad de Alicante). Machine learning, visión por computador, NLP e inferencia causal con Python.">
+  <meta name="x-title-en" content="Lucila Vázquez Soriano · Data Scientist">
+  <meta name="x-desc-en" content="Data Scientist with an MSc in Data Science (University of Alicante). Machine learning, computer vision, NLP and causal inference with Python.">
   <link rel="canonical" href="https://lvs42.github.io/">
   <meta property="og:type" content="website">
   <meta property="og:title" content="Lucila Vázquez Soriano · Data Scientist">
@@ -55,7 +57,7 @@
         <p class="hero__edu" data-i18n="hero.eyebrow">Máster en Ciencia de Datos · Universidad de Alicante</p>
         <div class="hero__cta">
           <a class="btn btn--primary" href="#proyectos" data-i18n="hero.cta1">Ver proyectos</a>
-          <a class="btn" id="cv-link" href="assets/docs/CV_Lucila_Vazquez_ES.pdf" download data-i18n="hero.cta2">Descargar CV</a>
+          <a class="btn cv-link" href="assets/docs/CV_Lucila_Vazquez_ES.pdf" download data-i18n="hero.cta2">Descargar CV</a>
         </div>
         <ul class="inline-links">
           <li><a href="https://github.com/lvs42" rel="me noopener" target="_blank">GitHub</a></li>
@@ -76,7 +78,7 @@
         <!-- TFM -->
         <article class="feature">
           <div class="feature__text">
-            <h3 data-i18n="tfm.title">Detección de cáncer gástrico en imágenes histopatológicas</h3>
+            <h3><a class="feature__link" href="proyectos/tfm.html" data-i18n="tfm.title">Detección de cáncer gástrico en imágenes histopatológicas</a></h3>
             <p class="meta" data-i18n="tfm.tag">TFM · Visión por computador · Salud</p>
             <p data-i18n="tfm.p1">Clasificación Normal / Anormal de 245.196 parches del conjunto público GasHisSDB (80, 120 y 160 px). Referencia: EfficientNetV2-B0 preentrenado como extractor + CatBoost; sobre ella evalúo aumento de datos y un módulo de atención CBAM.</p>
             <ul class="facts">
@@ -87,6 +89,7 @@
             </ul>
             <p class="stack">Python · PyTorch · timm · CatBoost · scikit-learn · SHAP · OpenCV · Docker</p>
             <p class="links">
+              <a class="link-int" href="proyectos/tfm.html" data-i18n="tfm.more">Ver el proyecto completo</a>
               <a href="assets/docs/TFM_Lucila_Vazquez_Soriano_Final.pdf" target="_blank" data-i18n="tfm.l1">Memoria (PDF)</a>
               <a href="assets/docs/Resumen_TFM_Lucila_Vazquez_Soriano.pdf" target="_blank" data-i18n="tfm.l2">Resumen (PDF)</a>
               <a href="https://github.com/lvs42/GastricCancer" target="_blank" rel="noopener" data-i18n="tfm.l3">Código</a>
@@ -120,63 +123,63 @@
         <ol class="work">
           <li class="work__item">
             <div class="work__main">
-              <h3 data-i18n="p1.title">Detección explicable de sexismo online</h3>
+              <h3><a class="work__link" href="proyectos/semeval.html" data-i18n="p1.title">Detección explicable de sexismo online</a></h3>
               <p class="meta">NLP · Transformers</p>
               <p data-i18n="p1.desc">SemEval-2023 Task 10 (EDOS): detección binaria, categoría y vector fino de sexismo. Comparo modelos clásicos sobre TF-IDF con DistilBERT y RoBERTa, estrategias de balanceo y un enfoque jerárquico.</p>
               <p class="stack">Hugging Face · PyTorch · scikit-learn · TF-IDF</p>
+              <p class="work__more" aria-hidden="true"><span data-i18n="work.more">Ver proyecto</span> <span class="arrow">→</span></p>
             </div>
-            <p class="work__metric"><span class="num">0,80</span><span data-i18n="p1.metric">F1 macro en la tarea binaria (DistilBERT + TF-IDF)</span></p>
           </li>
 
           <li class="work__item">
             <div class="work__main">
-              <h3 data-i18n="p2.title">Efecto causal del entorno urbano en el uso de la bici</h3>
+              <h3><a class="work__link" href="proyectos/causal-londres.html" data-i18n="p2.title">Efecto causal del entorno urbano en el uso de la bici</a></h3>
               <p class="meta" data-i18n="p2.tag">Inferencia causal · Movilidad</p>
               <p data-i18n="p2.desc">Londres, conteos oficiales del Department for Transport desde 2008 e imágenes Street View en serie temporal. Binomial negativa, g-computation, Propensity Score Matching y Causal Forest.</p>
               <p class="stack">Python · Causal Forest · PSM · <span data-i18n="chip.geo">Datos geoespaciales</span></p>
+              <p class="work__more" aria-hidden="true"><span data-i18n="work.more">Ver proyecto</span> <span class="arrow">→</span></p>
             </div>
-            <p class="work__metric"><span class="num">4</span><span data-i18n="p2.metric">métodos coinciden: el carril bici visible aumenta el uso; la pendiente lo frena</span></p>
           </li>
 
           <li class="work__item">
             <div class="work__main">
-              <h3 data-i18n="p3.title">Madrid, ¿ciudad de 15 minutos?</h3>
+              <h3><a class="work__link" href="proyectos/madrid-15-minutos.html" data-i18n="p3.title">Madrid, ¿ciudad de 15 minutos?</a></h3>
               <p class="meta" data-i18n="p3.tag">Geoespacial · Políticas urbanas</p>
               <p data-i18n="p3.desc">Accesibilidad a destinos esenciales por barrio a pie, en bici y en coche sobre redes de OpenStreetMap: isócronas, normalización e índice combinado. Proyecto en equipo de cuatro personas.</p>
               <p class="stack">OpenStreetMap · pandas · Plotly · Web scraping</p>
+              <p class="work__more" aria-hidden="true"><span data-i18n="work.more">Ver proyecto</span> <span class="arrow">→</span></p>
             </div>
-            <p class="work__metric"><span class="num">3</span><span data-i18n="p3.metric">modos de transporte comparados; gradiente claro centro–periferia</span></p>
           </li>
 
           <li class="work__item">
             <div class="work__main">
-              <h3 data-i18n="p4.title">Población real de un destino turístico</h3>
+              <h3><a class="work__link" href="proyectos/torrevieja.html" data-i18n="p4.title">Población real de un destino turístico</a></h3>
               <p class="meta" data-i18n="p4.tag">Análisis de datos · Turismo</p>
               <p data-i18n="p4.desc">Torrevieja: estimación de la población efectiva mensual cruzando padrón, FRONTUR, vivienda turística del INE y puntos de interés, más un análisis de qué datos faltan para medirla bien.</p>
               <p class="stack">GeoPandas · OSMnx · NetworkX · Plotly</p>
               <p class="links"><a href="proyectos/torrevieja-mapa.html" target="_blank" data-i18n="p4.link">Abrir mapa interactivo</a></p>
+              <p class="work__more" aria-hidden="true"><span data-i18n="work.more">Ver proyecto</span> <span class="arrow">→</span></p>
             </div>
-            <p class="work__metric"><span class="num">4</span><span data-i18n="p4.metric">fuentes oficiales integradas en un mapa interactivo</span></p>
           </li>
 
           <li class="work__item">
             <div class="work__main">
-              <h3 data-i18n="p5.title">Clasificación de grafos con GNN</h3>
+              <h3><a class="work__link" href="proyectos/gnn.html" data-i18n="p5.title">Clasificación de grafos con GNN</a></h3>
               <p class="meta">Deep Learning · Grafos</p>
               <p data-i18n="p5.desc">Variantes de GCN espectrales sobre cinco benchmarks (MUTAG, PROTEINS, ENZYMES, IMDB-BINARY, REDDIT-BINARY), evaluadas con 10 semillas y analizadas con proyecciones t-SNE de los embeddings.</p>
               <p class="stack">PyTorch Geometric · NetworkX · scikit-learn</p>
+              <p class="work__more" aria-hidden="true"><span data-i18n="work.more">Ver proyecto</span> <span class="arrow">→</span></p>
             </div>
-            <p class="work__metric"><span class="num">5</span><span data-i18n="p5.metric">datasets de moléculas, proteínas y redes sociales</span></p>
           </li>
 
           <li class="work__item">
             <div class="work__main">
-              <h3 data-i18n="p6.title">Calibración de redes neuronales</h3>
+              <h3><a class="work__link" href="proyectos/calibracion.html" data-i18n="p6.title">Calibración de redes neuronales</a></h3>
               <p class="meta">ML · Fiabilidad</p>
               <p data-i18n="p6.desc">Una CNN que acierta no siempre sabe cuánto acierta. Comparo temperature scaling y focal loss midiendo ECE y diagramas de fiabilidad, y el compromiso entre calibración y accuracy.</p>
               <p class="stack">TensorFlow / Keras · NumPy · Matplotlib</p>
+              <p class="work__more" aria-hidden="true"><span data-i18n="work.more">Ver proyecto</span> <span class="arrow">→</span></p>
             </div>
-            <p class="work__metric"><span class="num">ECE</span><span data-i18n="p6.metric">mínimo con focal loss (γ = 1) + temperature scaling</span></p>
           </li>
         </ol>
 
@@ -256,7 +259,7 @@
         <ul class="inline-links contact__links">
           <li><a href="https://www.linkedin.com/in/lucilavazquezsoriano/" target="_blank" rel="me noopener">LinkedIn</a></li>
           <li><a href="https://github.com/lvs42" target="_blank" rel="me noopener">GitHub</a></li>
-          <li><a href="assets/docs/CV_Lucila_Vazquez_ES.pdf" id="cv-link2" download data-i18n="contact.cv">CV (PDF)</a></li>
+          <li><a class="cv-link" href="assets/docs/CV_Lucila_Vazquez_ES.pdf" download data-i18n="contact.cv">CV (PDF)</a></li>
         </ul>
       </div>
     </section>

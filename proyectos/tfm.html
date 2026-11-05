@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Detección de cáncer gástrico · Lucila Vázquez Soriano</title>
+  <meta name="description" content="TFM de Lucila Vázquez Soriano: clasificación de imágenes histopatológicas de cáncer gástrico con EfficientNetV2, CatBoost y atención CBAM.">
+  <meta name="x-title-en" content="Gastric cancer detection · Lucila Vázquez Soriano">
+  <meta name="x-desc-en" content="Lucila Vázquez Soriano’s MSc thesis: gastric cancer histopathology classification with EfficientNetV2, CatBoost and CBAM attention.">
+  <link rel="canonical" href="https://lvs42.github.io/proyectos/tfm.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Detección de cáncer gástrico · Lucila Vázquez Soriano">
+  <meta property="og:description" content="TFM de Lucila Vázquez Soriano: clasificación de imágenes histopatológicas de cáncer gástrico con EfficientNetV2, CatBoost y atención CBAM.">
+  <meta property="og:url" content="https://lvs42.github.io/proyectos/tfm.html">
+  <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#101216" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="project">
+  <a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+  <header class="nav" id="top">
+    <div class="wrap nav__inner">
+      <a href="../index.html" class="logo" aria-label="Lucila Vázquez Soriano">Lucila Vázquez</a>
+      <nav aria-label="Principal">
+        <button class="nav__toggle" aria-expanded="false" aria-controls="menu">
+          <span class="sr-only" data-i18n="menu">Menú</span><span class="bars" aria-hidden="true"></span>
+        </button>
+        <ul id="menu" class="nav__menu"><li><a href="../index.html#proyectos" data-i18n="nav.projects">Proyectos</a></li><li><a href="../index.html#skills" data-i18n="nav.skills">Skills</a></li><li><a href="../index.html#sobre-mi" data-i18n="nav.about">Sobre mí</a></li><li><a href="../index.html#publicaciones" data-i18n="nav.pubs">Publicaciones</a></li><li><a href="../index.html#contacto" data-i18n="nav.contact">Contacto</a></li></ul>
+      </nav>
+      <button class="lang" id="lang" aria-label="Change language to English">EN</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="p-hero">
+      <div class="wrap">
+        <a class="crumb" href="../index.html#proyectos"><span aria-hidden="true">←</span> <span data-i18n="pp.back">Todos los proyectos</span></a>
+        <h1 data-i18n="tfmp.h1">Detección de cáncer gástrico en imágenes histopatológicas</h1>
+        <p class="meta" data-i18n="tfmp.meta">Trabajo Fin de Máster · Visión por computador · Salud · Calificación 10/10</p>
+        <p class="lead" data-i18n-html="tfmp.lead">¿Puede un modelo distinguir tejido gástrico normal de anormal en parches de microscopía? Construyo un sistema reproducible sobre GasHisSDB, mido cuánto aportan el aumento de datos y un módulo de atención CBAM, y analizo con honestidad dónde falla y qué no se puede concluir.</p>
+        <p class="links"><a href="../assets/docs/TFM_Lucila_Vazquez_Soriano_Final.pdf" target="_blank" data-i18n="tfmp.l1">Memoria (PDF)</a><a href="../assets/docs/Resumen_TFM_Lucila_Vazquez_Soriano.pdf" target="_blank" data-i18n="tfmp.l2">Resumen (PDF)</a><a href="https://github.com/lvs42/GastricCancer" target="_blank" rel="noopener" data-i18n="tfmp.l3">Código</a></p>
+        <dl class="keyfacts"><div><dt data-i18n="tfmp.k1">Datos</dt><dd data-i18n-html="tfmp.v1"><span class="num">245.196</span> parches · 3 tamaños</dd></div><div><dt data-i18n="tfmp.k2">Mejor accuracy</dt><dd data-i18n-html="tfmp.v2"><span class="num">94,70 %</span> · CBAM, 160 px</dd></div><div><dt data-i18n="tfmp.k3">AUC-ROC</dt><dd data-i18n-html="tfmp.v3"><span class="num">0,988</span> · CBAM, 160 px</dd></div><div><dt data-i18n="tfmp.k4">Protocolo</dt><dd data-i18n-html="tfmp.v4">5 semillas · CV estratificada de 5 pliegues</dd></div></dl>
+        
+      </div>
+    </section>
+    <section class="p-sec" id="problema">
+      <div class="wrap">
+        <h2 data-i18n="tfmp.s1">El problema</h2>
+        <div class="cols"><div><p data-i18n="tfmp.s1.p1">El diagnóstico histopatológico depende de que un patólogo revise láminas teñidas al microscopio. Es un trabajo lento y no siempre se llega a la misma conclusión diagnóstica, sobre todo cuando la muestra es ambigua.</p><p data-i18n-html="tfmp.s1.p2">GasHisSDB divide láminas de tejido gástrico teñidas con hematoxilina-eosina en parches pequeños etiquetados como <em>Normal</em> o <em>Anormal</em>. Trato cada tamaño de parche como una colección independiente y planteo una clasificación binaria por parche.</p></div><figure class="fig"><img src="../assets/img/p/tfm/tamanos.jpg" alt="Parches normales y anormales de 80, 120 y 160 píxeles" data-i18n-alt="tfmp.fig1.alt" width="1046" height="863" loading="lazy" decoding="async"><figcaption data-i18n-html="tfmp.fig1.cap">Ejemplos de las dos clases en los tres tamaños de GasHisSDB.</figcaption></figure></div>
+      </div>
+    </section>
+    <section class="p-sec" id="datos">
+      <div class="wrap">
+        <h2 data-i18n="tfmp.s2">Los datos</h2>
+        <div class="cols cols--wide"><div><p data-i18n="tfmp.s2.p1">Antes de entrenar nada, revisé el conjunto de datos a fondo. Esto fue lo que encontré:</p><ul class="facts"><li data-i18n-html="tfmp.s2.l.1">Clases desbalanceadas (≈ 60 % Normal / 40 % Anormal en los tres tamaños). Lo compenso con <strong>pesos de clase inversos a la frecuencia</strong>, sin descartar imágenes.</li><li data-i18n-html="tfmp.s2.l.2">Detecté <strong>160 parches en grupos de duplicados exactos</strong>, muchos sin tejido visible.</li><li data-i18n-html="tfmp.s2.l.3">Los identificadores no permiten saber de qué paciente o lámina sale cada parche, así que no se puede hacer una partición por paciente.</li><li data-i18n-html="tfmp.s2.l.4">Normalización con estadísticas propias de cada colección (media y desviación por canal).</li></ul></div><figure class="viz"><figcaption><span class="viz__title" data-i18n="tfmp.comp.t">Composición del conjunto de datos</span><span class="viz__sub" data-i18n="tfmp.comp.s">Parches por tamaño y clase · 245.196 en total</span></figcaption><ul class="legend" aria-hidden="true"><li><i style="background:var(--s1)"></i><span data-i18n="tfmp.normal">Normal</span></li><li><i style="background:var(--s2)"></i><span data-i18n="tfmp.abnormal">Anormal</span></li></ul><div class="stk"><div class="stk__row"><span class="num">80 px</span><span class="stk__bar" style="width:100.0%" role="img" aria-label="80 px: 87500 Normal, 59151 Abnormal"><span style="flex:87500;background:var(--s1)"></span><span style="flex:59151;background:var(--s2)"></span></span><span class="stk__val num"><span data-num="146651" data-dec="0">146.651</span><small>60 / 40 %</small></span></div><div class="stk__row"><span class="num">120 px</span><span class="stk__bar" style="width:44.5%" role="img" aria-label="120 px: 40460 Normal, 24801 Abnormal"><span style="flex:40460;background:var(--s1)"></span><span style="flex:24801;background:var(--s2)"></span></span><span class="stk__val num"><span data-num="65261" data-dec="0">65.261</span><small>62 / 38 %</small></span></div><div class="stk__row"><span class="num">160 px</span><span class="stk__bar" style="width:22.7%" role="img" aria-label="160 px: 20160 Normal, 13124 Abnormal"><span style="flex:20160;background:var(--s1)"></span><span style="flex:13124;background:var(--s2)"></span></span><span class="stk__val num"><span data-num="33284" data-dec="0">33.284</span><small>61 / 39 %</small></span></div></div></figure></div>
+      </div>
+    </section>
+    <section class="p-sec" id="enfoque">
+      <div class="wrap">
+        <h2 data-i18n="tfmp.s3">El enfoque</h2>
+        <p data-i18n-html="tfmp.s3.p1">Una red convolucional preentrenada actúa como extractor de características y un modelo de <em>gradient boosting</em> decide la clase. Sobre esta referencia comparo dos mejoras.</p><ol class="flow"><li><div class="step"><b data-i18n="tfmp.fl.1">Parche</b><span data-i18n="tfmp.fl.1s">80 · 120 · 160 px</span></div></li><li><div class="step"><b data-i18n="tfmp.fl.2">Redimensionado y normalización</b><span data-i18n="tfmp.fl.2s">224 px · RGB</span></div></li><li><div class="step"><b data-i18n="tfmp.fl.3">EfficientNetV2-B0</b><span data-i18n="tfmp.fl.3s">preentrenado y congelado</span></div></li><li><div class="step step--hi"><b data-i18n="tfmp.fl.4">+ CBAM</b><span data-i18n="tfmp.fl.4s">atención de canal y espacial</span></div></li><li><div class="step"><b data-i18n="tfmp.fl.5">Global average pooling</b><span data-i18n="tfmp.fl.5s">vector de características</span></div></li><li><div class="step"><b data-i18n="tfmp.fl.6">CatBoost</b><span data-i18n="tfmp.fl.6s">con pesos de clase</span></div></li><li><div class="step"><b data-i18n="tfmp.fl.7">Normal / Anormal</b></div></li></ol><div class="cols" style="margin-top:48px"><div><h3 style="margin-top:0" data-i18n="tfmp.s3.h1">Tres configuraciones</h3><ul class="facts"><li data-i18n-html="tfmp.s3.l.1"><strong>Referencia:</strong> EfficientNetV2-B0 congelado + CatBoost.</li><li data-i18n-html="tfmp.s3.l.2"><strong>Aumento de datos:</strong> orientaciones adicionales (transformaciones geométricas) solo durante el ajuste del clasificador.</li><li data-i18n-html="tfmp.s3.l.3"><strong>CBAM:</strong> un módulo de atención de canal y espacial entrenado sobre el extractor congelado, antes de CatBoost.</li></ul><h3 data-i18n="tfmp.s3.h2">Un protocolo que no depende de la suerte</h3><p data-i18n-html="tfmp.s3.p2">Separo un 20 % estratificado para la prueba final. En el 80 % restante, una validación cruzada estratificada de 5 pliegues elige los hiperparámetros de CatBoost entre 27 combinaciones según la <em>balanced accuracy</em>. Repito todo con 5 semillas y reporto la media, además de un intervalo de confianza bootstrap al 95 %.</p></div><div><div class="folds" role="img" aria-label="5-fold stratified cross-validation inside the 80 % training split, then a final evaluation on the 20 % test split"><span></span><span class="folds__h num">1</span><span class="folds__h num">2</span><span class="folds__h num">3</span><span class="folds__h num">4</span><span class="folds__h num">5</span><span class="folds__h" data-i18n="tfmp.f.test">Test</span><span class="folds__r num">1</span><span class="folds__c is-val"></span><span class="folds__c"></span><span class="folds__c"></span><span class="folds__c"></span><span class="folds__c"></span><span class="folds__c is-test"></span><span class="folds__r num">2</span><span class="folds__c"></span><span class="folds__c is-val"></span><span class="folds__c"></span><span class="folds__c"></span><span class="folds__c"></span><span class="folds__r num">3</span><span class="folds__c"></span><span class="folds__c"></span><span class="folds__c is-val"></span><span class="folds__c"></span><span class="folds__c"></span><span class="folds__r num">4</span><span class="folds__c"></span><span class="folds__c"></span><span class="folds__c"></span><span class="folds__c is-val"></span><span class="folds__c"></span><span class="folds__r num">5</span><span class="folds__c"></span><span class="folds__c"></span><span class="folds__c"></span><span class="folds__c"></span><span class="folds__c is-val"></span></div><ul class="legend" aria-hidden="true"><li><i style="background:var(--s1)"></i><span data-i18n="tfmp.f.l1">Ajuste de CatBoost</span></li><li><i style="background:var(--s2)"></i><span data-i18n="tfmp.f.l2">Validación</span></li><li><i style="background:var(--muted)"></i><span data-i18n="tfmp.f.l3">Evaluación final (20 %)</span></li></ul></div></div>
+      </div>
+    </section>
+    <section class="p-sec" id="resultados">
+      <div class="wrap">
+        <h2 data-i18n="tfmp.s4">Resultados</h2>
+        <div class="cols"><figure class="viz" id="tfm-viz">
+            <figcaption>
+              <span class="viz__title" data-i18n="viz.title">Resultados por tamaño de parche</span>
+              <span class="viz__sub" data-i18n="viz.sub">Media de 5 semillas, %</span>
+            </figcaption>
+            <div class="seg" role="radiogroup" aria-label="Métrica">
+              <button role="radio" aria-checked="true" data-metric="acc">Accuracy</button>
+              <button role="radio" aria-checked="false" data-metric="sens" data-i18n="viz.sens">Sensibilidad</button>
+              <button role="radio" aria-checked="false" data-metric="spec" data-i18n="viz.spec">Especificidad</button>
+            </div>
+            <ul class="legend" aria-hidden="true">
+              <li><i style="background:var(--s1)"></i><span data-i18n="viz.ref">Referencia</span></li>
+              <li><i style="background:var(--s2)"></i><span data-i18n="viz.aug">Aumento de datos</span></li>
+              <li><i style="background:var(--s3)"></i>CBAM</li>
+            </ul>
+            <div class="viz__plot"><svg role="img" aria-labelledby="viz-desc"></svg><div class="tip" hidden></div></div>
+            <p id="viz-desc" class="sr-only" data-i18n="viz.desc">Gráfico de puntos: CBAM obtiene el mejor resultado en los tres tamaños de parche; el rendimiento crece con el tamaño.</p>
+            <details class="viz__table">
+              <summary data-i18n="viz.table">Ver tabla de datos</summary>
+              <table><thead><tr><th>px</th><th data-i18n="viz.ref">Referencia</th><th data-i18n="viz.aug">Aumento de datos</th><th>CBAM</th></tr></thead><tbody></tbody></table>
+            </details>
+          </figure><div><ul class="facts"><li data-i18n-html="tfmp.s4.l.1"><strong>CBAM es la mejor configuración</strong> en los tres tamaños y supera a la referencia en las 5 semillas: +2,16 pp a 80 px, +1,22 a 120 px y +1,46 a 160 px.</li><li data-i18n-html="tfmp.s4.l.2"><strong>El aumento de datos mejora de forma consistente</strong> (+1,13, +0,95 y +1,14 pp) sin añadir ningún módulo entrenable.</li><li data-i18n-html="tfmp.s4.l.3"><strong>El tamaño del parche pesa más que cualquier mejora:</strong> la referencia gana 3,60 pp de 80 a 160 px. Ese efecto no se puede separar de la cantidad y composición de cada colección.</li><li data-i18n-html="tfmp.s4.l.4">Intervalo de confianza al 95 % de CBAM a 160 px: <strong>94,22 – 95,25 %</strong> (semilla 42).</li></ul></div></div><div class="cols" style="margin-top:48px"><figure class="viz"><figcaption><span class="viz__title" data-i18n="tfmp.cm.t">Matriz de confusión · CBAM, 160 px</span><span class="viz__sub" data-i18n="tfmp.cm.s">Conjunto de prueba, semilla 42 · 6.657 parches · % por fila</span></figcaption><div class="mx" style="grid-template-columns:auto 1fr 1fr"><span></span><span class="h" data-i18n="tfmp.cm.pn">Predicho Normal</span><span class="h" data-i18n="tfmp.cm.pa">Predicho Anormal</span><span class="h h--row" data-i18n="tfmp.cm.rn">Real Normal</span><span class="c is-dark" style="--v:0.86"><b data-num="3841" data-dec="0">3.841</b><small class="num" data-num="95.3" data-dec="1" data-suf=" %">95,3 %</small></span><span class="c" style="--v:0.04"><b data-num="191" data-dec="0">191</b><small class="num" data-num="4.7" data-dec="1" data-suf=" %">4,7 %</small></span><span class="h h--row" data-i18n="tfmp.cm.ra">Real Anormal</span><span class="c" style="--v:0.05"><b data-num="160" data-dec="0">160</b><small class="num" data-num="6.1" data-dec="1" data-suf=" %">6,1 %</small></span><span class="c is-dark" style="--v:0.85"><b data-num="2465" data-dec="0">2.465</b><small class="num" data-num="93.9" data-dec="1" data-suf=" %">93,9 %</small></span></div><p class="viz__sub" style="margin-top:12px" data-i18n="tfmp.cm.n">Sensibilidad 93,9 % · especificidad 95,3 %. Hay algo más de falsos positivos (191) que de falsos negativos (160).</p></figure><figure class="viz"><figcaption><span class="viz__title" data-i18n="tfmp.tr.t">Transferencia entre tamaños de parche</span><span class="viz__sub" data-i18n="tfmp.tr.s">Accuracy media (5 semillas, %) · modelo de referencia entrenado en un tamaño y evaluado en otro sin reentrenar</span></figcaption><div class="mx" style="grid-template-columns:auto repeat(3, 1fr)"><span></span><span class="h num">→ 80 px</span><span class="h num">→ 120 px</span><span class="h num">→ 160 px</span><span class="h h--row num">80 px</span><span class="c is-diag is-dark" style="--v:0.76"><b data-num="89.64" data-dec="2">89,64</b></span><span class="c is-dark" style="--v:0.76"><b data-num="89.40" data-dec="2">89,40</b></span><span class="c is-dark" style="--v:0.65"><b data-num="85.28" data-dec="2">85,28</b></span><span class="h h--row num">120 px</span><span class="c" style="--v:0.48"><b data-num="78.73" data-dec="2">78,73</b></span><span class="c is-diag is-dark" style="--v:0.83"><b data-num="92.24" data-dec="2">92,24</b></span><span class="c is-dark" style="--v:0.78"><b data-num="90.49" data-dec="2">90,49</b></span><span class="h h--row num">160 px</span><span class="c" style="--v:0.19"><b data-num="67.38" data-dec="2">67,38</b></span><span class="c is-dark" style="--v:0.60"><b data-num="83.41" data-dec="2">83,41</b></span><span class="c is-diag is-dark" style="--v:0.85"><b data-num="93.24" data-dec="2">93,24</b></span></div><p class="mx-axis" data-i18n="tfmp.tr.ax">Filas: tamaño de entrenamiento · columnas: tamaño de evaluación · recuadro: mismo tamaño</p></figure></div><p style="margin-top:24px" data-i18n-html="tfmp.s4.p2">La transferencia entre tamaños es <strong>asimétrica</strong>: entrenar con parches pequeños generaliza mejor hacia los grandes (80 → 160 px conserva un 85,28 %) que al revés (160 → 80 px cae al 67,38 %).</p>
+      </div>
+    </section>
+    <section class="p-sec" id="interpretabilidad">
+      <div class="wrap">
+        <h2 data-i18n="tfmp.s5">¿En qué se fija el modelo?</h2>
+        <p data-i18n="tfmp.s5.p1">Usé dos herramientas: los mapas de atención espacial de CBAM y SHAP sobre las predicciones de CatBoost, proyectado sobre la imagen (SHAP-CAM). Para no quedarme con ejemplos bonitos, estratifiqué la muestra de 160 px en cuatro grupos del conjunto de prueba: 5.900 aciertos con alta confianza, 114 aciertos con baja confianza, 191 falsos positivos y 160 falsos negativos.</p><div class="figs"><figure class="fig"><img src="../assets/img/p/tfm/atencion-anormal.jpg" alt="Parche anormal y su mapa de atención espacial" data-i18n-alt="tfmp.fig2.alt" width="1000" height="500" loading="lazy" decoding="async"><figcaption data-i18n-html="tfmp.fig2.cap">Atención espacial de CBAM sobre un parche anormal: los pesos son casi uniformes.</figcaption></figure><figure class="fig"><img src="../assets/img/p/tfm/shapcam-fp.jpg" alt="Parche normal clasificado como anormal y su mapa SHAP-CAM" data-i18n-alt="tfmp.fig3.alt" width="1000" height="500" loading="lazy" decoding="async"><figcaption data-i18n-html="tfmp.fig3.cap">SHAP-CAM sobre un falso positivo: un parche normal que el modelo marcó como anormal.</figcaption></figure></div><p class="note" style="margin-top:28px" data-i18n-html="tfmp.s5.p2">La conclusión honesta es que estas herramientas sirven para <strong>explorar</strong> el comportamiento del modelo, no para validarlo. La atención apenas diferencia zonas y los mapas no demuestran que el modelo localice estructuras tumorales. Confirmar su relevancia histológica requeriría la revisión de un especialista.</p>
+      </div>
+    </section>
+    <section class="p-sec" id="limitaciones">
+      <div class="wrap">
+        <h2 data-i18n="tfmp.s6">Limitaciones y siguientes pasos</h2>
+        <div class="cols"><div><h3 style="margin-top:0" data-i18n="tfmp.s6.h1">Lo que limita los resultados</h3><ul class="facts"><li data-i18n-html="tfmp.s6.l.1">Sin identificadores de procedencia, parches de una misma lámina pueden caer en entrenamiento y prueba: las métricas pueden ser <strong>optimistas</strong>.</li><li data-i18n-html="tfmp.s6.l.2">Las estadísticas de normalización se estimaron antes de particionar.</li><li data-i18n-html="tfmp.s6.l.3">CBAM se entrena antes de la validación cruzada de CatBoost, así que esa validación no cubre todo el aprendizaje de la variante.</li></ul></div><div><h3 style="margin-top:0" data-i18n="tfmp.s6.h2">Siguientes pasos</h3><ul class="facts"><li data-i18n-html="tfmp.s6.m.1">Un conjunto que permita agrupar parches por imagen de origen y particionar sin fugas.</li><li data-i18n-html="tfmp.s6.m.2">Ajuste fino del extractor en lugar de mantenerlo congelado.</li><li data-i18n-html="tfmp.s6.m.3">Validar los mapas de interpretabilidad con patólogos.</li></ul><p data-i18n-html="tfmp.s6.p">Todo el experimento es reproducible: entorno en <strong>Docker</strong> con dependencias fijadas y resultados por semilla guardados en JSON.</p><p class="stack">Python · PyTorch · timm · CatBoost · scikit-learn · SHAP · OpenCV · Docker</p></div></div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <a class="next" href="semeval.html"><small data-i18n="pp.next">Siguiente proyecto</small><span class="t"><span data-i18n="p1.title">Detección explicable de sexismo online</span> <span class="arrow" aria-hidden="true">→</span></span></a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>© 2026 Lucila Vázquez Soriano · <span data-i18n="footer">Hecha a mano con HTML, CSS y JavaScript</span></p></div>
+  </footer>
+  <script src="../assets/js/i18n.js" defer></script>
+  <script src="../assets/js/i18n-projects.js" defer></script>
+  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/project-charts.js" defer></script>
+</body>
+</html>

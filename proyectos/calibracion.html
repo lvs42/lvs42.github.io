@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calibración de redes neuronales · Lucila Vázquez Soriano</title>
+  <meta name="description" content="Calibración de CNN con temperature scaling, focal loss y MC Dropout: ECE y diagramas de fiabilidad en CIFAR-10 y Fashion-MNIST.">
+  <meta name="x-title-en" content="Neural network calibration · Lucila Vázquez Soriano">
+  <meta name="x-desc-en" content="CNN calibration with temperature scaling, focal loss and MC Dropout: ECE and reliability diagrams on CIFAR-10 and Fashion-MNIST.">
+  <link rel="canonical" href="https://lvs42.github.io/proyectos/calibracion.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Calibración de redes neuronales · Lucila Vázquez Soriano">
+  <meta property="og:description" content="Calibración de CNN con temperature scaling, focal loss y MC Dropout: ECE y diagramas de fiabilidad en CIFAR-10 y Fashion-MNIST.">
+  <meta property="og:url" content="https://lvs42.github.io/proyectos/calibracion.html">
+  <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#101216" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="project">
+  <a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+  <header class="nav" id="top">
+    <div class="wrap nav__inner">
+      <a href="../index.html" class="logo" aria-label="Lucila Vázquez Soriano">Lucila Vázquez</a>
+      <nav aria-label="Principal">
+        <button class="nav__toggle" aria-expanded="false" aria-controls="menu">
+          <span class="sr-only" data-i18n="menu">Menú</span><span class="bars" aria-hidden="true"></span>
+        </button>
+        <ul id="menu" class="nav__menu"><li><a href="../index.html#proyectos" data-i18n="nav.projects">Proyectos</a></li><li><a href="../index.html#skills" data-i18n="nav.skills">Skills</a></li><li><a href="../index.html#sobre-mi" data-i18n="nav.about">Sobre mí</a></li><li><a href="../index.html#publicaciones" data-i18n="nav.pubs">Publicaciones</a></li><li><a href="../index.html#contacto" data-i18n="nav.contact">Contacto</a></li></ul>
+      </nav>
+      <button class="lang" id="lang" aria-label="Change language to English">EN</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="p-hero">
+      <div class="wrap">
+        <a class="crumb" href="../index.html#proyectos"><span aria-hidden="true">←</span> <span data-i18n="pp.back">Todos los proyectos</span></a>
+        <h1 data-i18n="cbp.h1">Calibración de redes neuronales</h1>
+        <p class="meta" data-i18n="cbp.meta">Machine Learning · Fiabilidad de modelos</p>
+        <p class="lead" data-i18n-html="cbp.lead">Si un modelo dice «90 % de confianza», debería acertar 9 de cada 10 veces. Una CNN que acierta no siempre sabe cuánto acierta. Mido ese desajuste con el ECE y los diagramas de fiabilidad, y comparo técnicas para corregirlo.</p>
+        
+        <dl class="keyfacts"><div><dt data-i18n="cbp.k1">Datos</dt><dd data-i18n-html="cbp.v1">CIFAR-10 · Fashion-MNIST</dd></div><div><dt data-i18n="cbp.k2">Técnicas</dt><dd data-i18n-html="cbp.v2">Temperature scaling · focal loss · MC Dropout · aumento de datos</dd></div><div><dt data-i18n="cbp.k3">ECE en test</dt><dd data-i18n-html="cbp.v3"><span class="num">0,032 → 0,004</span> (−86 %)</dd></div><div><dt data-i18n="cbp.k4">Accuracy</dt><dd data-i18n-html="cbp.v4">prácticamente igual (89,1 → 89,0 %)</dd></div></dl>
+        
+      </div>
+    </section>
+    <section class="p-sec" id="estudio">
+      <div class="wrap">
+        <h2 data-i18n="cbp.s1">Temperature scaling y focal loss</h2>
+        <div class="cols cols--wide"><div><p data-i18n="cbp.s1.p1">Sobre Fashion-MNIST entrené la misma CNN con distintas funciones de pérdida y comparé el resultado antes y después de calibrar en validación.</p><ul class="facts"><li data-i18n-html="cbp.s1.l.1"><strong>Temperature scaling</strong> no cambia la accuracy, pero baja el ECE de 0,032 a 0,006. La temperatura óptima (1,33) indica que el modelo original estaba sobreconfiado.</li><li data-i18n-html="cbp.s1.l.2"><strong>Focal loss con γ = 1</strong> ya calibra mucho mejor que cross-entropy (0,007). Al subir γ, el ECE empeora rápidamente.</li><li data-i18n-html="cbp.s1.l.3">La combinación de <strong>focal loss γ = 1 y temperature scaling</strong> logra el mejor ECE (0,004), con una accuracy ligeramente menor.</li></ul></div><figure class="viz" data-chart="{&quot;type&quot;: &quot;bar&quot;, &quot;domain&quot;: [0, 0.14], &quot;ticks&quot;: [0, 0.04, 0.08, 0.12], &quot;fmt&quot;: 3, &quot;rows&quot;: [{&quot;l&quot;: &quot;Cross-entropy&quot;, &quot;v&quot;: 0.0316}, {&quot;l&quot;: &quot;Cross-entropy + TS&quot;, &quot;v&quot;: 0.0056}, {&quot;l&quot;: &quot;Focal loss · γ = 1&quot;, &quot;v&quot;: 0.0065, &quot;gap&quot;: true}, {&quot;l&quot;: &quot;Focal loss · γ = 2&quot;, &quot;v&quot;: 0.0403}, {&quot;l&quot;: &quot;Focal loss · γ = 3&quot;, &quot;v&quot;: 0.0768}, {&quot;l&quot;: &quot;Focal loss · γ = 4&quot;, &quot;v&quot;: 0.1056}, {&quot;l&quot;: &quot;Focal loss · γ = 5&quot;, &quot;v&quot;: 0.1323}, {&quot;l&quot;: &quot;Focal loss · γ = 1 + TS&quot;, &quot;v&quot;: 0.0045, &quot;gap&quot;: true, &quot;hi_&quot;: true}]}"><figcaption><span class="viz__title" data-i18n="cbp.c1.t">ECE en test por configuración</span><span class="viz__sub" data-i18n="cbp.c1.s">Fashion-MNIST · menor es mejor</span></figcaption></figure></div><div style="margin-top:40px"><figure class="fig"><img src="../assets/img/p/calibracion/ts.jpg" alt="Dos diagramas de fiabilidad antes y después de temperature scaling" data-i18n-alt="cbp.fig1.alt" width="1187" height="468" loading="lazy" decoding="async"><figcaption data-i18n-html="cbp.fig1.cap">Diagramas de fiabilidad: tras temperature scaling, la confianza del modelo se ajusta a la diagonal de calibración perfecta.</figcaption></figure></div>
+      </div>
+    </section>
+    <section class="p-sec" id="desbalance">
+      <div class="wrap">
+        <h2 data-i18n="cbp.s2">Desbalance, aumento de datos y MC Dropout</h2>
+        <div class="cols"><div><p data-i18n="cbp.s2.p1">En una primera parte, sobre CIFAR-10, generé escenarios sin desbalance, con desbalance suave y con desbalance severo para ver cómo afectan a la calibración.</p><ul class="facts"><li data-i18n-html="cbp.s2.l.1">El desbalance severo empeora a la vez la accuracy y la calibración, sobre todo en las clases minoritarias.</li><li data-i18n-html="cbp.s2.l.2">El aumento de datos mitiga en parte la mala calibración, pero no la resuelve.</li><li data-i18n-html="cbp.s2.l.3">MC Dropout no ayuda si el modelo ya está bien calibrado, pero sí reduce el ECE con desbalance severo.</li></ul></div><div><h3 style="margin-top:0" data-i18n="cbp.s2.h">La lección</h3><p data-i18n="cbp.s2.p2">Existe un compromiso entre calibración y accuracy: la configuración con menor ECE no siempre es la que más acierta. Para decidir con un modelo, importan las dos métricas.</p><p class="stack">Python · TensorFlow / Keras · NumPy · SciPy · Matplotlib</p></div></div><div style="margin-top:40px"><figure class="fig"><img src="../assets/img/p/calibracion/focal.jpg" alt="Tres diagramas de fiabilidad comparando cross-entropy y focal loss" data-i18n-alt="cbp.fig2.alt" width="1400" height="575" loading="lazy" decoding="async"><figcaption data-i18n-html="cbp.fig2.cap">Diagramas de fiabilidad comparando cross-entropy y focal loss.</figcaption></figure></div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <a class="next" href="tfm.html"><small data-i18n="pp.next">Siguiente proyecto</small><span class="t"><span data-i18n="tfm.title">Detección de cáncer gástrico en imágenes histopatológicas</span> <span class="arrow" aria-hidden="true">→</span></span></a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>© 2026 Lucila Vázquez Soriano · <span data-i18n="footer">Hecha a mano con HTML, CSS y JavaScript</span></p></div>
+  </footer>
+  <script src="../assets/js/i18n.js" defer></script>
+  <script src="../assets/js/i18n-projects.js" defer></script>
+  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/project-charts.js" defer></script>
+</body>
+</html>

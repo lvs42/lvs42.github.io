@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Madrid, ¿ciudad de 15 minutos? · Lucila Vázquez Soriano</title>
+  <meta name="description" content="Accesibilidad a servicios esenciales por barrio en Madrid a pie, en bici y en coche con OSMnx, NetworkX e isócronas de 15 minutos.">
+  <meta name="x-title-en" content="Madrid, a 15-minute city? · Lucila Vázquez Soriano">
+  <meta name="x-desc-en" content="Accessibility to essential services by neighbourhood in Madrid on foot, by bike and by car with OSMnx, NetworkX and 15-minute isochrones.">
+  <link rel="canonical" href="https://lvs42.github.io/proyectos/madrid-15-minutos.html">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Madrid, ¿ciudad de 15 minutos? · Lucila Vázquez Soriano">
+  <meta property="og:description" content="Accesibilidad a servicios esenciales por barrio en Madrid a pie, en bici y en coche con OSMnx, NetworkX e isócronas de 15 minutos.">
+  <meta property="og:url" content="https://lvs42.github.io/proyectos/madrid-15-minutos.html">
+  <meta name="theme-color" content="#f7f6f2" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#101216" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body class="project">
+  <a class="skip" href="#main" data-i18n="skip">Saltar al contenido</a>
+  <header class="nav" id="top">
+    <div class="wrap nav__inner">
+      <a href="../index.html" class="logo" aria-label="Lucila Vázquez Soriano">Lucila Vázquez</a>
+      <nav aria-label="Principal">
+        <button class="nav__toggle" aria-expanded="false" aria-controls="menu">
+          <span class="sr-only" data-i18n="menu">Menú</span><span class="bars" aria-hidden="true"></span>
+        </button>
+        <ul id="menu" class="nav__menu"><li><a href="../index.html#proyectos" data-i18n="nav.projects">Proyectos</a></li><li><a href="../index.html#skills" data-i18n="nav.skills">Skills</a></li><li><a href="../index.html#sobre-mi" data-i18n="nav.about">Sobre mí</a></li><li><a href="../index.html#publicaciones" data-i18n="nav.pubs">Publicaciones</a></li><li><a href="../index.html#contacto" data-i18n="nav.contact">Contacto</a></li></ul>
+      </nav>
+      <button class="lang" id="lang" aria-label="Change language to English">EN</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="p-hero">
+      <div class="wrap">
+        <a class="crumb" href="../index.html#proyectos"><span aria-hidden="true">←</span> <span data-i18n="pp.back">Todos los proyectos</span></a>
+        <h1 data-i18n="map.h1">Madrid, ¿ciudad de 15 minutos?</h1>
+        <p class="meta" data-i18n="map.meta">Recolección, Procesamiento y Visualización de Datos · Geoespacial · Equipo de 4 personas</p>
+        <p class="lead" data-i18n-html="map.lead">¿Cuántos colegios, centros de salud y supermercados se alcanzan en 15 minutos desde cada barrio de Madrid? Lo calculamos a pie, en bici y en coche sobre las redes viarias reales de OpenStreetMap.</p>
+        
+        <dl class="keyfacts"><div><dt data-i18n="map.k1">Destinos</dt><dd data-i18n-html="map.v1">Colegios · centros de salud · supermercados</dd></div><div><dt data-i18n="map.k2">Modos</dt><dd data-i18n-html="map.v2">A pie · bicicleta · coche</dd></div><div><dt data-i18n="map.k3">Unidad</dt><dd data-i18n-html="map.v3">Barrios de Madrid</dd></div><div><dt data-i18n="map.k4">Datos</dt><dd data-i18n-html="map.v4">OpenStreetMap · enero de 2026</dd></div></dl>
+        
+      </div>
+    </section>
+    <section class="p-sec" id="metodo">
+      <div class="wrap">
+        <h2 data-i18n="map.s1">Método</h2>
+        <ol class="flow"><li><div class="step"><b data-i18n="map.fl.1">Redes viarias</b><span data-i18n="map.fl.1s">OSMnx · un grafo por modo</span></div></li><li><div class="step"><b data-i18n="map.fl.2">Tiempo por tramo</b><span data-i18n="map.fl.2s">longitud ÷ velocidad</span></div></li><li><div class="step"><b data-i18n="map.fl.3">Dijkstra</b><span data-i18n="map.fl.3s">NetworkX · desde el centroide de cada barrio</span></div></li><li><div class="step step--hi"><b data-i18n="map.fl.4">Isócrona de 15 min</b><span data-i18n="map.fl.4s">polígono alcanzable</span></div></li><li><div class="step"><b data-i18n="map.fl.5">Destinos dentro</b><span data-i18n="map.fl.5s">unión espacial</span></div></li><li><div class="step"><b data-i18n="map.fl.6">Índice combinado</b><span data-i18n="map.fl.6s">min–max por modo y media</span></div></li></ol><div class="cols" style="margin-top:40px"><div><p data-i18n="map.s1.p1">Para cada modo de transporte descargamos un grafo independiente: los nodos son cruces y las aristas, tramos de calle. Asignamos a cada tramo un tiempo de recorrido y, con Dijkstra, calculamos qué nodos se alcanzan en 15 minutos. Con ellos construimos la isócrona de cada barrio y contamos cuántos destinos caen dentro.</p><p data-i18n="map.s1.p2">Como los valores no son comparables entre modos, los normalizamos entre 0 y 1 y definimos un índice combinado como la media de los tres modos.</p></div><figure class="fig"><img src="../assets/img/p/madrid/destinos.jpg" alt="Mapa de Madrid con colegios, centros de salud y supermercados" data-i18n-alt="map.fig1.alt" width="1000" height="1123" loading="lazy" decoding="async"><figcaption data-i18n-html="map.fig1.cap">Destinos considerados: colegios, centros de salud y supermercados.</figcaption></figure></div>
+      </div>
+    </section>
+    <section class="p-sec" id="resultados">
+      <div class="wrap">
+        <h2 data-i18n="map.s2">Resultados</h2>
+        <figure class="fig"><img src="../assets/img/p/madrid/tres-modos.jpg" alt="Tres mapas de Madrid con la accesibilidad normalizada a pie, en bici y en coche" data-i18n-alt="map.fig2.alt" width="1600" height="533" loading="lazy" decoding="async"><figcaption data-i18n-html="map.fig2.cap">Accesibilidad normalizada (0–1) por barrio: a pie, en bicicleta y en coche.</figcaption></figure><div class="cols" style="margin-top:40px"><div><ul class="facts"><li data-i18n-html="map.s2.l.1">Hay un <strong>gradiente centro–periferia</strong> claro: los barrios centrales concentran la accesibilidad.</li><li data-i18n-html="map.s2.l.2">La bicicleta mejora mucho respecto a caminar, y el coche alcanza valores altos en muchos más barrios.</li><li data-i18n-html="map.s2.l.3">Algunos barrios son accesibles con cualquier modo; otros dependen totalmente del coche.</li></ul><h3 data-i18n="map.s2.h">Limitaciones</h3><ul class="facts"><li data-i18n-html="map.s2.m.1">Velocidad estimada fija por modo: no se modelan el tráfico ni la pendiente.</li><li data-i18n-html="map.s2.m.2">El centroide del barrio representa a toda su población.</li><li data-i18n-html="map.s2.m.3">Los datos de OpenStreetMap pueden estar incompletos en algunas zonas.</li></ul><p class="stack">Python · OSMnx · NetworkX · OpenStreetMap</p></div><figure class="fig"><img src="../assets/img/p/madrid/indice.jpg" alt="Mapa de Madrid con el índice combinado de accesibilidad por barrio" data-i18n-alt="map.fig3.alt" width="1000" height="971" loading="lazy" decoding="async"><figcaption data-i18n-html="map.fig3.cap">Índice combinado de accesibilidad en 15 minutos por barrio.</figcaption></figure></div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <a class="next" href="torrevieja.html"><small data-i18n="pp.next">Siguiente proyecto</small><span class="t"><span data-i18n="p4.title">Población real de un destino turístico</span> <span class="arrow" aria-hidden="true">→</span></span></a>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap"><p>© 2026 Lucila Vázquez Soriano · <span data-i18n="footer">Hecha a mano con HTML, CSS y JavaScript</span></p></div>
+  </footer>
+  <script src="../assets/js/i18n.js" defer></script>
+  <script src="../assets/js/i18n-projects.js" defer></script>
+  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/project-charts.js" defer></script>
+</body>
+</html>
