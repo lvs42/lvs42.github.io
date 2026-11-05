@@ -140,6 +140,9 @@ a:hover { text-decoration-thickness: 2px; }
 .hero__role { display: inline-block; font-size: clamp(1.3rem, 1.05rem + 1.1vw, 1.95rem); font-weight: 600; letter-spacing: -.01em; line-height: 1.25; color: var(--accent-ink); margin-bottom: 1em; padding-bottom: .3em; border-bottom: 3px solid var(--accent); }
 .hero__lead { font-size: clamp(1.1rem, 1rem + .4vw, 1.3rem); line-height: 1.55; max-width: 56ch; }
 .hero__edu { color: var(--muted); font-size: .98rem; }
+.hero { overflow-x: clip; }
+.hero__text { position: relative; isolation: isolate; }
+.hero__text::before { content: ""; position: absolute; inset: -12% -18% -12% -30%; z-index: -1; pointer-events: none; background: radial-gradient(closest-side, var(--bg) 62%, transparent); } /* clears the animated background behind the hero text */
 .hero__grid { display: grid; grid-template-columns: minmax(0, 1fr) clamp(220px, 28vw, 360px); gap: clamp(32px, 5vw, 72px); align-items: center; }
 .hero__photo { width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border-radius: 20px; box-shadow: 0 18px 48px -24px rgb(0 0 0 / .45); }
 @media (max-width: 760px) { .hero__grid { grid-template-columns: 1fr; gap: 28px; } .hero__photo { order: -1; width: min(200px, 55vw); border-radius: 50%; aspect-ratio: 1; object-position: 50% 22%; } }
